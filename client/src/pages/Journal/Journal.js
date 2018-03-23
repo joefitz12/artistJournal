@@ -1,3 +1,5 @@
+//jshint ignore: start
+
 import React, { Component } from "react";
 import DeleteBtn from "../../components/DeleteBtn";
 import Jumbotron from "../../components/Jumbotron";
@@ -7,29 +9,28 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 
-class Books extends Component {
+class Journal extends Component {
   state = {
-    books: [],
+    notes: [],
     title: "",
-    author: "",
-    synopsis: ""
+    body: ""
   };
 
   componentDidMount() {
-    this.loadBooks();
+    this.loadNotes();
   }
 
-  loadBooks = () => {
-    API.getBooks()
+  loadNotes = () => {
+    API.getAllNotes()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ notes: res.data, title: "", body: ""})
       )
       .catch(err => console.log(err));
   };
 
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
+  deleteNote = id => {
+    API.deleteNote(id)
+      .then(res => this.loadNotes())
       .catch(err => console.log(err));
   };
 
@@ -43,12 +44,11 @@ class Books extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.title && this.state.author) {
-      API.saveBook({
+      API.saveNote({
         title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
+        body: this.state.body
       })
-        .then(res => this.loadBooks())
+        .then(res => this.loadNotes())
         .catch(err => console.log(err));
     }
   };
@@ -66,42 +66,36 @@ class Books extends Component {
                 value={this.state.title}
                 onChange={this.handleInputChange}
                 name="title"
-                placeholder="Title (required)"
-              />
-              <Input
-                value={this.state.author}
-                onChange={this.handleInputChange}
-                name="author"
-                placeholder="Author (required)"
+                placeholder="Title"
               />
               <TextArea
-                value={this.state.synopsis}
+                value={this.state.body}
                 onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
+                name="body"
+                placeholder="Enter Note Here!"
               />
               <FormBtn
-                disabled={!(this.state.author && this.state.title)}
+                disabled={!(this.state.title && this.state.body)}
                 onClick={this.handleFormSubmit}
               >
-                Submit Book
+                Submit Note
               </FormBtn>
             </form>
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Books On My List</h1>
+              <h1>My Notes</h1>
             </Jumbotron>
-            {this.state.books.length ? (
+            {this.state.notes.length ? (
               <List>
-                {this.state.books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
+                {this.state.notes.map(note => (
+                  <ListItem key={note._id}>
+                    <Link to={"/journal/" + note._id}>
                       <strong>
-                        {book.title} by {book.author}
+                        {note.title}
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
+                    <DeleteBtn onClick={() => this.deleteNote(note._id)} />
                   </ListItem>
                 ))}
               </List>
@@ -115,4 +109,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default Journal;
