@@ -1,18 +1,14 @@
 import React from "react";
+import { NavDropdown, MenuItem } from 'react-bootstrap';
 
 const Nav = () =>
   <nav className="navbar navbar-inverse navbar-top">
     <div className="container-fluid">
-      <div className="navbar-header">
-        <button type="button" className="collapsed navbar-toggle">
-          <span className="sr-only">Toggle navigation</span>
-          <span className="icon-bar" /> <span className="icon-bar" />
-          <span className="icon-bar" />
-        </button>
-        <a href="/" className="navbar-brand">
-          React Reading List
-        </a>
-      </div>
+      <NavDropdown eventKey={1} title="artistJournal" id="app-name-logo">
+        <MenuItem eventKey={1.1} href="/">my journal</MenuItem>
+        <MenuItem eventKey={1.2} href="/write">write</MenuItem>
+        <MenuItem eventKey={1.3} href="/preferences">artist preferences</MenuItem>
+      </NavDropdown>
     </div>
   </nav>;
 

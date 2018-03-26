@@ -9,6 +9,10 @@ export default {
   getNote: function(id) {
     return axios.get("/api/notes/" + id);
   },
+  // Updates the note with the given id
+  updateNote: function(id){
+    return axios.put("/api/notes/" + id);
+  },
   // Deletes the note with the given id
   deleteNote: function(id) {
     return axios.delete("/api/notes/" + id);

@@ -11,6 +11,14 @@ import { Input, TextArea, FormBtn } from "../../components/Form";
 
 class Journal extends Component {
   state = {
+    id: "",
+    email: "",
+    password: "",
+    phone: 0,
+    firstName: "",
+    emailNotifications: "",
+    textNotifications: "",
+    theme: "",
     notes: [],
     title: "",
     body: ""
@@ -60,7 +68,7 @@ class Journal extends Component {
         <Row>
           <Col size="md-12 sm-12">
             <Jumbotron>
-              <h1>My Notes</h1>
+              <h1>My Preferences</h1>
             </Jumbotron>
             {this.state.notes.length ? (
               <List>

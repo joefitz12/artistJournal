@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3001;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 // Serve up static assets
-app.use(express.static("client/src"));
+app.use(express.static("client/build"));
 // Add routes, both API and view
 app.use(routes);
 
@@ -17,7 +17,7 @@ app.use(routes);
 mongoose.Promise = global.Promise;
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/artistjournaldb",
+  process.env.MONGODB_URI || "mongodb://joefitz12:mYzguP4TvxmKNoypzreLjWyM@ds139869.mlab.com:39869/heroku_b96dmrv0",
   {
     useMongoClient: true
   }
