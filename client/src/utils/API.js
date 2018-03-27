@@ -1,6 +1,14 @@
 import axios from "axios";
 
 export default {
+  // Gets artist info
+  getArtist: function(id) {
+    return axios.get("/api/artists/" + id);
+  },
+  // Gets artist info
+  saveArtist: function(id) {
+    return axios.put("/api/artists/" + id);
+  },
   // Gets all notes
   getAllNotes: function() {
     return axios.get("/api/notes");
