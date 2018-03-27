@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
+import Inspiration from "../../components/Inspiration";
 import API from "../../utils/API";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 
@@ -12,6 +13,7 @@ const Write = (props) => (
         <Jumbotron>
           <h1>Freewrite Here</h1>
         </Jumbotron>
+        <Inspiration loadInspiration={props.loadInspiration} inspiration={props.inspiration} />
         <form>
           <Input
             value={props.title}

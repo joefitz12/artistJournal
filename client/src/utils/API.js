@@ -6,8 +6,8 @@ export default {
     return axios.get("/api/artists/" + id);
   },
   // Gets artist info
-  saveArtist: function(id) {
-    return axios.put("/api/artists/" + id);
+  saveArtist: function(id, artistData) {
+    return axios.put("/api/artists/" + id, artistData);
   },
   // Gets all notes
   getAllNotes: function() {

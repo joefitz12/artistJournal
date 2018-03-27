@@ -3,6 +3,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import API from "./utils/API";
+import obliqueStratAPI from "./utils/obliqueStratAPI";
 import Journal from "./pages/Journal";
 import Note from "./pages/Note";
 import Write from "./pages/Write";
@@ -22,14 +23,16 @@ class App extends Component {
     theme: "",
     notes: [],
     title: "",
-    body: ""
+    body: "",
+    inspiration: ""
   };
 
 
 
   componentDidMount() {
-    this.loadNotes();
     this.loadArtist(this.state.id);
+    this.loadNotes();
+    this.loadInspiration();
   }
 
   loadArtist = id => {
@@ -57,6 +60,11 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
+  loadInspiration = () => {
+    let inspiration = obliqueStratAPI.getInspiration();
+    this.setState({ inspiration: inspiration });
+  };
+
   deleteNote = id => {
     API.deleteNote(id)
       .then(res => this.loadNotes())
@@ -72,7 +80,7 @@ class App extends Component {
 
   handlePrefSubmit = event => {
     event.preventDefault();
-    API.saveArtist({
+    API.saveArtist(this.state.id, {
         email: this.state.email,
         phone: this.state.phone,
         firstName: this.state.firstName,
@@ -80,7 +88,7 @@ class App extends Component {
         textNotifications: this.state.textNotifications,
         theme: this.state.theme,
     })
-      .then(res => this.loadArtist())
+      .then(res => this.loadArtist(this.state.id))
       .catch(err => console.log(err));
   };
 
@@ -105,8 +113,8 @@ class App extends Component {
             <Route exact path="/" render={() => <Journal notes={this.state.notes} deleteNote={this.deleteNote} />} />
             <Route exact path="/journal" render={() => <Journal notes={this.state.notes} deleteNote={this.deleteNote} />} />
             <Route exact path="/journal/:id" component={Note} />
-            <Route exact path="/write" render={() => <Write title={this.state.title} body={this.state.body} handleInputChange={this.handleInputChange} handleNoteSubmit={this.handleNoteSubmit} />} />
-            <Route exact path="/preferences" render={() => <Preferences id={this.state.id} email={this.state.email} phone={this.state.phone} firstName={this.state.firstName} textNotifications={this.state.textNotifications} emailNotifications={this.state.emailNotifications} theme={this.state.theme} handleInputChange={this.handleInputChange} />} />
+            <Route exact path="/write" render={() => <Write title={this.state.title} body={this.state.body} inspiration={this.state.inspiration} loadInspiration={this.loadInspiration} handleInputChange={this.handleInputChange} handleNoteSubmit={this.handleNoteSubmit} />} />
+            <Route exact path="/preferences" render={() => <Preferences id={this.state.id} email={this.state.email} phone={this.state.phone} firstName={this.state.firstName} textNotifications={this.state.textNotifications} emailNotifications={this.state.emailNotifications} theme={this.state.theme} handleInputChange={this.handleInputChange} handlePrefSubmit={this.handlePrefSubmit} />} />
             <Route component={NoMatch} />
           </Switch>
         </div>
