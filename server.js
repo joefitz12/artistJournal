@@ -1,6 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const Artist = require('./models/artist');
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -12,6 +15,13 @@ app.use(bodyParser.json());
 app.use(express.static("client/build"));
 // Add routes, both API and view
 app.use(routes);
+// Initializes passport
+// app.use(passport.initialize());
+// app.use(passport.session());
+
+// passport.use(new LocalStrategy(Artist.authenticate()));
+// passport.serializeUser(Artist.serializeUser());
+// passport.deserializeUser(Artist.deserializeUser());
 
 // Set up promises with mongoose
 mongoose.Promise = global.Promise;

@@ -9,6 +9,10 @@ export default {
   saveArtist: function(id, artistData) {
     return axios.put("/api/artists/" + id, artistData);
   },
+  // Creates new Artist
+  createArtist: function(artistData) {
+    return axios.post("/api/artists/", artistData);
+  },
   // Gets all notes
   getAllNotes: function(id) {
     console.log("getAllNotes id: ", id);
