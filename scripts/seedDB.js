@@ -49,9 +49,33 @@ const noteSeed = [
   }
 ];
 
+const artistSeed = [
+  {
+    email: "test@test.com",
+    password: "abc123",
+    phone: 7652092199,
+    firstName: "test man",
+    emailNotifications: false,
+    textNotifications: true,
+    theme: "first theme"
+  }
+];
+
 db.Note
   .remove({})
   .then(() => db.Note.collection.insertMany(noteSeed))
+  .then(data => {
+    console.log(data.insertedIds.length + " records inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
+
+  db.Artist
+  .remove({})
+  .then(() => db.Artist.collection.insertMany(artistSeed))
   .then(data => {
     console.log(data.insertedIds.length + " records inserted!");
     process.exit(0);
