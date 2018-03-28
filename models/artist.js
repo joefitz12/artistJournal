@@ -6,7 +6,7 @@ const SALT_WORK_FACTOR = 10;
 
 
 const validateEmail = function(email) {
-  var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/;
   return re.test(email);
 };
 
@@ -18,7 +18,7 @@ const artistSchema = new Schema({
     unique: true,
     required: 'email address is required',
     validate: [validateEmail, 'please use a valid email address'],
-    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'please use a valid email address'] 
+    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/, 'please use a valid email address'] 
   },
   password: { type: String, required: true },
   phone: {
@@ -32,6 +32,8 @@ const artistSchema = new Schema({
   theme: String
 });
 
+// Hooks are automatic methods that run during various phases of the User Model lifecycle
+// In this case, before a User is created, we will automatically hash their password
 artistSchema.pre('save', function(next) {
 
   let artist = this;
@@ -60,11 +62,6 @@ const Artist = mongoose.model("Artist", artistSchema);
 // Artist.prototype.validPassword = function(password) {
 //   return bcrypt.compareSync(password, this.password);
 // };
-// Hooks are automatic methods that run during various phases of the User Model lifecycle
-// In this case, before a User is created, we will automatically hash their password
-// artistSchema.pre("save", function(artist) {
-//   artist.password = bcrypt.hashSync(artist.password, bcrypt.genSaltSync(10), null);
-// });
 
 
 
