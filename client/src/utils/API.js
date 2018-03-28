@@ -10,8 +10,9 @@ export default {
     return axios.put("/api/artists/" + id, artistData);
   },
   // Gets all notes
-  getAllNotes: function() {
-    return axios.get("/api/notes");
+  getAllNotes: function(id) {
+    console.log("getAllNotes id: ", id);
+    return axios.get("/api/notes/all/" + id);
   },
   // Gets the note with the given id
   getNote: function(id) {

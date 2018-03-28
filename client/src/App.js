@@ -31,7 +31,7 @@ class App extends Component {
 
   componentDidMount() {
     this.loadArtist(this.state.id);
-    this.loadNotes();
+    this.loadNotes(this.state.id);
     this.loadInspiration();
   }
 
@@ -52,8 +52,8 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-  loadNotes = () => {
-    API.getAllNotes()
+  loadNotes = (id) => {
+    API.getAllNotes(id)
       .then(res =>
         this.setState({ notes: res.data, title: "", body: "" })
       )
@@ -96,6 +96,7 @@ class App extends Component {
     event.preventDefault();
     if (this.state.title && this.state.body) {
       API.saveNote({
+        userId: this.state.id,
         title: this.state.title,
         body: this.state.body
       })

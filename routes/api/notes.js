@@ -3,8 +3,11 @@ const notesController = require("../../controllers/notesController");
 
 // Matches with "/api/notes"
 router.route("/")
-  .get(notesController.findAll)
   .post(notesController.create);
+
+// Matches with "/api/notes/all/:id"
+router.route("/all/:id")
+  .get(notesController.findAll);
 
 // Matches with "/api/notes/:id"
 router.route("/:id")

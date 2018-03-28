@@ -16,7 +16,6 @@ const Journal = (props) => (
         <Jumbotron>
           <h1>My Notes</h1>
         </Jumbotron>
-        {console.log("props: ", props)}
         {props.notes ? (
           <List>
             {props.notes.map(note => (
