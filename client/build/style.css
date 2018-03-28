@@ -1,0 +1,18 @@
+li {
+    list-style-type: none;
+}
+
+#app-name-logo {
+    color: #ffffff;
+    font-size: 40px;
+}
+
+#app-name-logo:hover,
+#app-name-logo:focus {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.caret {
+    display: none;
+}
