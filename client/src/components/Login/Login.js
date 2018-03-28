@@ -56,16 +56,6 @@ const DeleteBtn = props => (
           <option value="true">I want to receive email notifications.</option>
           <option value="false">I would like to opt out of receiving email notifications.</option>
         </select>
-        <h2>theme</h2>
-        <select
-          value={props.state.theme}
-          onChange={props.handleInputChange}
-          name="theme"
-        >
-          <option value="first theme">first theme</option>
-          <option value="theme2">theme again</option>
-          <option value="theme3">a theme x 3</option>
-        </select>
         <FormBtn
           onClick={props.handleCreateArtist}
         >

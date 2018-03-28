@@ -17,8 +17,7 @@ class Home extends Component {
         phone: "",
         firstName: "",
         emailNotifications: "",
-        textNotifications: "",
-        theme: "",
+        textNotifications: ""
     };
 
     switchNav = () => {
@@ -44,14 +43,13 @@ class Home extends Component {
 
     handleCreateArtist = event => {
         event.preventDefault();
-        API.createArtist(this.state.id, {
+        API.createArtist({
             email: this.state.email,
             password: this.state.password,
             phone: this.state.phone,
             firstName: this.state.firstName,
             emailNotifications: this.state.emailNotifications,
             textNotifications: this.state.textNotifications,
-            theme: this.state.theme,
         })
             .then(res => this.loadArtist(this.state.id))
             .catch(err => console.log(err));

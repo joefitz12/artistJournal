@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt-nodejs");
+const SALT_WORK_FACTOR = 10;
 // const passportLocalMongoose = require('passport-local-mongoose');
+
 
 const validateEmail = function(email) {
   var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -30,16 +32,40 @@ const artistSchema = new Schema({
   theme: String
 });
 
+artistSchema.pre('save', function(next) {
+
+  let artist = this;
+
+  // only hash the password if it has been modified (or is new)
+  if (!artist.isModified('password')) return next();
+
+  // generate a salt
+  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+      if (err) return next(err);
+
+      // hash the password along with our new salt
+      bcrypt.hash(artist.password, salt, null, function(err, hash) {
+          if (err) return next(err);
+
+          // override the cleartext password with the hashed one
+          artist.password = hash;
+          next();
+      });
+  });
+});
+
 const Artist = mongoose.model("Artist", artistSchema);
 
 // Creating a custom method for our Artist model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
-Artist.prototype.validPassword = function(password) {
-  return bcrypt.compareSync(password, this.password);
-};
+// Artist.prototype.validPassword = function(password) {
+//   return bcrypt.compareSync(password, this.password);
+// };
 // Hooks are automatic methods that run during various phases of the User Model lifecycle
 // In this case, before a User is created, we will automatically hash their password
-artistSchema.pre("save", function(artist) {
-  artist.password = bcrypt.hashSync(artist.password, bcrypt.genSaltSync(10), null);
-});
+// artistSchema.pre("save", function(artist) {
+//   artist.password = bcrypt.hashSync(artist.password, bcrypt.genSaltSync(10), null);
+// });
+
+
 
 module.exports = Artist;
