@@ -59,9 +59,9 @@ artistSchema.pre('save', function(next) {
 const Artist = mongoose.model("Artist", artistSchema);
 
 // Creating a custom method for our Artist model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
-// Artist.prototype.validPassword = function(password) {
-//   return bcrypt.compareSync(password, this.password);
-// };
+Artist.prototype.validPassword = function(password) {
+  return bcrypt.compareSync(password, this.password);
+};
 
 
 

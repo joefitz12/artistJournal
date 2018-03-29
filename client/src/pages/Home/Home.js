@@ -17,7 +17,8 @@ class Home extends Component {
         phone: "",
         firstName: "",
         emailNotifications: "",
-        textNotifications: ""
+        textNotifications: "",
+        loggedInData: {}
     };
 
     switchNav = () => {
@@ -33,12 +34,19 @@ class Home extends Component {
 
     handleLogin = event => {
         event.preventDefault();
-        API.saveArtist(this.state.id, {
+        API.login({
             email: this.state.email,
             password: this.state.password
         })
-            .then(res => this.loadArtist(this.state.id))
-            .catch(err => console.log(err));
+        .then(function(data) {
+        console.log("logged in data:", data);
+        console.log("data.data: ", data.data);
+        console.log("data.data._id: ", data.data._id);
+        // If there's an error, log the error
+        })
+        .catch(function(err) {
+        console.log(err);
+      });
     };
 
     handleCreateArtist = event => {
@@ -51,7 +59,7 @@ class Home extends Component {
             emailNotifications: this.state.emailNotifications,
             textNotifications: this.state.textNotifications,
         })
-            .then(res => this.loadArtist(this.state.id))
+            .then(res => console.log("res: ",res))
             .catch(err => console.log(err));
     };
 
