@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import API from "./utils/API";
 import obliqueStratAPI from "./utils/obliqueStratAPI";
+import Home from "./pages/Home";
 import Journal from "./pages/Journal";
 import Note from "./pages/Note";
 import Write from "./pages/Write";
@@ -111,7 +112,7 @@ class App extends Component {
         <div>
           <Nav />
           <Switch>
-            <Route exact path="/" render={() => <Journal notes={this.state.notes} deleteNote={this.deleteNote} />} />
+            <Route exact path="/" render={() => <Home />} />
             <Route exact path="/journal" render={() => <Journal notes={this.state.notes} deleteNote={this.deleteNote} />} />
             <Route exact path="/journal/:id" component={Note} />
             <Route exact path="/write" render={() => <Write title={this.state.title} body={this.state.body} inspiration={this.state.inspiration} loadInspiration={this.loadInspiration} handleInputChange={this.handleInputChange} handleNoteSubmit={this.handleNoteSubmit} />} />

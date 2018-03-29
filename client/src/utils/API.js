@@ -1,6 +1,10 @@
 import axios from "axios";
 
 export default {
+  // Logs in
+  login: function(loginData) {
+    return axios.post("/api/artists/login/", loginData);
+  },
   // Gets artist info
   getArtist: function(id) {
     return axios.get("/api/artists/" + id);
@@ -9,9 +13,12 @@ export default {
   saveArtist: function(id, artistData) {
     return axios.put("/api/artists/" + id, artistData);
   },
+  // Creates new Artist
+  createArtist: function(artistData) {
+    return axios.post("/api/artists/", artistData);
+  },
   // Gets all notes
   getAllNotes: function(id) {
-    console.log("getAllNotes id: ", id);
     return axios.get("/api/notes/all/" + id);
   },
   // Gets the note with the given id

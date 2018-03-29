@@ -1,6 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const session = require("express-session");
 const mongoose = require("mongoose");
+const passport = require('passport');
+const authCheck = require('./config/middleware/isAuthenticated');
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -11,6 +14,14 @@ app.use(bodyParser.json());
 // Serve up static assets
 app.use(express.static("client/build"));
 // Add routes, both API and view
+// pass the authenticaion checker middleware
+
+// Initializes passport
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// app.use('/api', authCheck);
 app.use(routes);
 
 // Set up promises with mongoose
@@ -24,6 +35,6 @@ mongoose.connect(
 );
 
 // Start the API server
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
