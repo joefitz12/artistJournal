@@ -18,7 +18,7 @@ const Journal = (props) => (
         </Jumbotron>
         <Input
             value={props.search}
-            onChange={props.searchNotes}
+            onChange={props.updateSearch}
             name="search"
             placeholder="Search"
           />

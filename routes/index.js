@@ -15,7 +15,7 @@ router.use("/api", apiRoutes);
 // router.use(isAuthenticated, function (req, res) {
 //     res.sendFile(path.join(__dirname, "../public/index.html"));
 // });
-router.use(isAuthenticated, function (req, res) {
+router.use(function (req, res) {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
