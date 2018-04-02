@@ -42,16 +42,16 @@ const DeleteBtn = props => (
           name="phone"
         />
         <h2>notifications</h2>
-        <select value={props.state.textNotifcations}
-          onChange={props.handleInputChange}
+        <select value={props.state.textNotifications}
+          onChange={props.handleTextNotificationChange}
           name="textNotifications">
           <option value="true">I want to receive text message notifications.</option>
           <option value="false">I would like to opt out of receiving text message notifications.</option>
         </select>
         <br />
         <br />
-        <select value={props.state.emailNotifcations}
-          onChange={props.handleInputChange}
+        <select value={props.state.emailNotifications}
+          onChange={props.handleEmailNotificationChange}
           name="emailNotifications">
           <option value="true">I want to receive email notifications.</option>
           <option value="false">I would like to opt out of receiving email notifications.</option>

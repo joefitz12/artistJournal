@@ -1,13 +1,14 @@
 //jshint ignore: start
 
 import React, { Component } from "react";
-import Jumbotron from "../../components/Jumbotron";
-import Login from "../../components/Login";
-import API from "../../utils/API";
+import Jumbotron from "../components/Jumbotron";
+import Nav from "../components/Nav";
+import Login from "../components/Login";
+import API from "../utils/API";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
-import { List, ListItem } from "../../components/List";
-import { Input, TextArea, FormBtn } from "../../components/Form";
+import { Col, Row, Container } from "../components/Grid";
+import { List, ListItem } from "../components/List";
+import { Input, TextArea, FormBtn } from "../components/Form";
 
 class Home extends Component {
     state = {
@@ -16,8 +17,8 @@ class Home extends Component {
         password: "",
         phone: "",
         firstName: "",
-        emailNotifications: true,
-        textNotifications: true,
+        emailNotifications: "",
+        textNotifications: "",
         loggedInData: {}
     };
 
@@ -27,20 +28,10 @@ class Home extends Component {
 
     handleInputChange = event => {
         const { name, value } = event.target;
-        console.log("state before change", this.state);
         this.setState({
             [name]: value
         });
-        console.log("state after change", this.state);
     };
-
-    handleEmailNotificationChange = () => {
-        this.state.emailNotifications === true ? this.setState({emailNotifications: false}) : this.setState({emailNotifications: true});
-    }
-
-    handleTextNotificationChange = () => {
-        this.state.textNotifications === true ? this.setState({textNotifications: false}) : this.setState({textNotifications: true});
-    }
 
     handleLogin = event => {
         event.preventDefault();
@@ -75,6 +66,7 @@ class Home extends Component {
     render() {
         return (
         <Container fluid>
+            <Nav />
             <Row>
                 <Col size="md-12 sm-12">
                     <Jumbotron>
@@ -87,7 +79,7 @@ class Home extends Component {
                     </Jumbotron>
                 </Col>
                 <Col size="md-6 sm-12">
-                    <Login state={this.state} switchNav={this.switchNav} handleInputChange={this.handleInputChange} handleEmailNotificationChange={this.handleEmailNotificationChange} handleTextNotificationChange={this.handleTextNotificationChange} handleCreateArtist={this.handleCreateArtist} handleLogin={this.handleLogin} />
+                    <Login state={this.state} switchNav={this.switchNav} handleInputChange={this.handleInputChange} handleCreateArtist={this.handleCreateArtist} handleLogin={this.handleLogin} />
                 </Col>
             </Row>
         </Container>

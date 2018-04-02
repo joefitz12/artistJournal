@@ -40,7 +40,7 @@ class Note extends Component {
         </Row>
         <Row>
           <Col size="md-2">
-            <Link to="/">← Back to Journal</Link>
+            <Link to="/journal">← Back to Journal</Link>
           </Col>
         </Row>
       </Container>

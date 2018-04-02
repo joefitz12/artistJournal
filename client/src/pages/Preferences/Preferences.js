@@ -35,7 +35,7 @@ const Preferences = (props) => (
             name="phone"
             />
             <h2>notifications</h2>
-            <select value={props.textNotifcations}
+            <select value={props.textNotifications}
             onChange={props.handleInputChange}
             name="textNotifications">
               <option value="true">I want to receive text message notifications.</option>
@@ -43,7 +43,7 @@ const Preferences = (props) => (
             </select>
             <br />
             <br />
-            <select value={props.emailNotifcations}
+            <select value={props.emailNotifications}
             onChange={props.handleInputChange}
             name="emailNotifications">
               <option value="true">I want to receive email notifications.</option>
