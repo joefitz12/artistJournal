@@ -16,13 +16,20 @@ const Journal = (props) => (
         <Jumbotron>
           <h1>My Notes</h1>
         </Jumbotron>
+        <Input
+            value={props.search}
+            onChange={props.searchNotes}
+            name="search"
+            placeholder="Search"
+          />
         {props.notes ? (
           <List>
             {props.notes.map(note => (
               <ListItem key={note._id}>
+                
                 <Link to={"/journal/" + note._id}>
                   <strong>
-                    {note.title}
+                  {`${note.date.substring(5,10)}-${note.date.substring(0,4)} - ${note.title}`}
                   </strong>
                 </Link>
                 <DeleteBtn onClick={() => props.deleteNote(note._id)} />

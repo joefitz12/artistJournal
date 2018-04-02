@@ -53,12 +53,31 @@ const artistSeed = [
   {
     email: "test@test.com",
     password: "abc123",
-    phone: 7652092199,
+    phone: 7652092198,
     firstName: "test man",
     emailNotifications: false,
     textNotifications: true,
     theme: "first theme"
-  }
+  },
+  {
+    _id: "ObjectId('5aba6c1424123a9e59ca4c74')",
+    email: "hi@hi.com",
+    password: "abc123",
+    phone: 7652092199.0,
+    firstName: "new name",
+    emailNotifications: false,
+    textNotifications: true,
+    theme: "first theme"
+  },
+  {
+    _id: "ObjectId('5abd327d823632d8aa746cb1')",
+    email: "example@example.com",
+    password: "$2a$10$dBZqOI7oP/3j9oiOhUxEdONeJE3NF3qcmBUch4GI.nNnrAuVYEVp6",
+    phone: 8154640764.0,
+    firstName: "hello",
+    emailNotifications: false,
+    textNotifications: false
+}
 ];
 
 db.Note
@@ -73,7 +92,7 @@ db.Note
     process.exit(1);
   });
 
-  db.Artist
+db.Artist
   .remove({})
   .then(() => db.Artist.collection.insertMany(artistSeed))
   .then(data => {

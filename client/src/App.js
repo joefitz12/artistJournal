@@ -15,17 +15,19 @@ import Nav from "./components/Nav";
 class App extends Component {
 
   state = {
-    id: "5aba6c1424123a9e59ca4c74",
+    id: "5abe926b310684f75fb44074",
     email: "",
     phone: 0,
     firstName: "",
     emailNotifications: "",
     textNotifications: "",
     theme: "",
+    allNotes: [],
     notes: [],
     title: "",
     body: "",
-    inspiration: ""
+    inspiration: "",
+    search: ""
   };
 
 
@@ -38,7 +40,8 @@ class App extends Component {
 
   loadArtist = id => {
     API.getArtist(id)
-      .then(res =>
+      .then(res => {
+        console.log("loadArtist results", res);
         this.setState(
           {
             email: res.data.email,
@@ -49,16 +52,29 @@ class App extends Component {
             theme: res.data.theme,
           }
         )
+      }
       )
       .catch(err => console.log(err));
   }
 
   loadNotes = (id) => {
     API.getAllNotes(id)
-      .then(res =>
-        this.setState({ notes: res.data, title: "", body: "" })
+      .then(res => {
+        console.log("loadNotes res:", res);
+        this.setState({ allNotes: res.data, notes: res.data, title: "", body: "" })
+      }
       )
       .catch(err => console.log(err));
+  };
+
+  searchNotes = (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+    let filteredNotes = this.state.allNotes.filter(note => (note.title.toLowerCase().includes(this.state.search.toLowerCase()) || note.body.toLowerCase().includes(this.state.search.toLowerCase())));
+    console.log("filteredNotes: ", filteredNotes);
+    this.setState({ notes: filteredNotes });
   };
 
   loadInspiration = () => {
@@ -82,12 +98,12 @@ class App extends Component {
   handlePrefSubmit = event => {
     event.preventDefault();
     API.saveArtist(this.state.id, {
-        email: this.state.email,
-        phone: this.state.phone,
-        firstName: this.state.firstName,
-        emailNotifications: this.state.emailNotifications,
-        textNotifications: this.state.textNotifications,
-        theme: this.state.theme,
+      email: this.state.email,
+      phone: this.state.phone,
+      firstName: this.state.firstName,
+      emailNotifications: this.state.emailNotifications,
+      textNotifications: this.state.textNotifications,
+      theme: this.state.theme,
     })
       .then(res => this.loadArtist(this.state.id))
       .catch(err => console.log(err));
@@ -101,7 +117,7 @@ class App extends Component {
         title: this.state.title,
         body: this.state.body
       })
-        .then(res => this.loadNotes())
+        .then(res => this.loadNotes(this.state.id))
         .catch(err => console.log(err));
     }
   };
@@ -113,7 +129,7 @@ class App extends Component {
           <Nav />
           <Switch>
             <Route exact path="/" render={() => <Home />} />
-            <Route exact path="/journal" render={() => <Journal notes={this.state.notes} deleteNote={this.deleteNote} />} />
+            <Route exact path="/journal" render={() => <Journal search={this.state.search} notes={this.state.notes} deleteNote={this.deleteNote} searchNotes={this.searchNotes} />} />
             <Route exact path="/journal/:id" component={Note} />
             <Route exact path="/write" render={() => <Write title={this.state.title} body={this.state.body} inspiration={this.state.inspiration} loadInspiration={this.loadInspiration} handleInputChange={this.handleInputChange} handleNoteSubmit={this.handleNoteSubmit} />} />
             <Route exact path="/preferences" render={() => <Preferences id={this.state.id} email={this.state.email} phone={this.state.phone} firstName={this.state.firstName} textNotifications={this.state.textNotifications} emailNotifications={this.state.emailNotifications} theme={this.state.theme} handleInputChange={this.handleInputChange} handlePrefSubmit={this.handlePrefSubmit} />} />

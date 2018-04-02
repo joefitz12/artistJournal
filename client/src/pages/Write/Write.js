@@ -5,6 +5,7 @@ import Jumbotron from "../../components/Jumbotron";
 import Inspiration from "../../components/Inspiration";
 import API from "../../utils/API";
 import { Input, TextArea, FormBtn } from "../../components/Form";
+import WordCounter from "../../components/WordCounter";
 
 const Write = (props) => (
   <Container fluid>
@@ -27,6 +28,7 @@ const Write = (props) => (
             name="body"
             placeholder="Enter Note Here!"
           />
+          <WordCounter body={props.body} />
           <FormBtn
             disabled={!(props.title && props.body)}
             onClick={props.handleNoteSubmit}
@@ -34,6 +36,11 @@ const Write = (props) => (
             Submit Note
               </FormBtn>
         </form>
+      </Col>
+    </Row>
+    <Row>
+      <Col size="md-2">
+        <Link to="/journal">← Back to Journal</Link>
       </Col>
     </Row>
   </Container>
