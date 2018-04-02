@@ -15,7 +15,7 @@ import Nav from "./components/Nav";
 class App extends Component {
 
   state = {
-    id: "5abe926b310684f75fb44074",
+    id: "5aba6c1424123a9e59ca4c74",
     email: "",
     phone: 0,
     firstName: "",
@@ -67,14 +67,18 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
-  searchNotes = (event) => {
+  searchNotes = () => {
+    console.log("searchNotes search: ", this.state.search);
+    let filteredNotes = this.state.allNotes.filter(note => (note.title.toLowerCase().includes(this.state.search.toLowerCase()) || note.body.toLowerCase().includes(this.state.search.toLowerCase())));
+    !this.state.search ? this.setState({ notes: this.state.allNotes }) : this.setState({ notes: filteredNotes });
+    console.log("this.state.notes: ", this.state.notes);
+  };
+
+  updateSearch = (event) => {
     const { name, value } = event.target;
     this.setState({
       [name]: value
-    });
-    let filteredNotes = this.state.allNotes.filter(note => (note.title.toLowerCase().includes(this.state.search.toLowerCase()) || note.body.toLowerCase().includes(this.state.search.toLowerCase())));
-    console.log("filteredNotes: ", filteredNotes);
-    this.setState({ notes: filteredNotes });
+    }, this.searchNotes);
   };
 
   loadInspiration = () => {
@@ -129,7 +133,7 @@ class App extends Component {
           <Nav />
           <Switch>
             <Route exact path="/" render={() => <Home />} />
-            <Route exact path="/journal" render={() => <Journal search={this.state.search} notes={this.state.notes} deleteNote={this.deleteNote} searchNotes={this.searchNotes} />} />
+            <Route exact path="/journal" render={() => <Journal search={this.state.search} notes={this.state.notes} deleteNote={this.deleteNote} updateSearch={this.updateSearch} />} />
             <Route exact path="/journal/:id" component={Note} />
             <Route exact path="/write" render={() => <Write title={this.state.title} body={this.state.body} inspiration={this.state.inspiration} loadInspiration={this.loadInspiration} handleInputChange={this.handleInputChange} handleNoteSubmit={this.handleNoteSubmit} />} />
             <Route exact path="/preferences" render={() => <Preferences id={this.state.id} email={this.state.email} phone={this.state.phone} firstName={this.state.firstName} textNotifications={this.state.textNotifications} emailNotifications={this.state.emailNotifications} theme={this.state.theme} handleInputChange={this.handleInputChange} handlePrefSubmit={this.handlePrefSubmit} />} />

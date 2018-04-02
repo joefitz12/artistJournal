@@ -1,5 +1,5 @@
 const db = require("../models");
-const email = require("../notifications/email")
+const email = require("../notifications/email");
 
 // Defining methods for the artistsController
 module.exports = {
