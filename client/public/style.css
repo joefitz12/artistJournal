@@ -1,4 +1,47 @@
+body {
+    font-family: 'Vollkorn', serif;
+    background-color: whitesmoke;
+}
+
+a {
+    color: #23395B;
+}
+
+a:hover {
+    color: #73D1B8;
+    text-decoration: none;
+}
+
 h1,
 h2 {
     font-family: 'Vollkorn', serif;
+    font-family: 'Amatic SC', "cursive";
+}
+
+.btn {
+    color: #23395B;
+    background-color: #fff;
+    border-color: #23395B;;
+}
+
+.btn:hover,
+.btn:focus,
+.btn:active:hover,
+.btn:active:focus {
+    color: #fff;
+    background-color: #23395B;
+    border-color: #23395B;
+}
+
+.btn-success[disabled]:hover {
+    color: #fff;
+    background-color: #23395B;
+    border-color: #23395B;
+    opacity: .8;
+}
+
+.col-md-1 {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
 }

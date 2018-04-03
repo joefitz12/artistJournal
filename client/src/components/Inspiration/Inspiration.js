@@ -7,7 +7,6 @@ import "./Inspiration.css";
 
 const Inspiration = (props) =>
     <div className="inspiration-div">
-        <h2 id="inspiration">{props.inspiration}</h2>
         <FormBtn
             onClick={props.loadInspiration}
         >

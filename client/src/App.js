@@ -89,6 +89,7 @@ class App extends Component {
   loadInspiration = () => {
     let inspiration = obliqueStratAPI.getInspiration();
     this.setState({ inspiration: inspiration });
+    this.setState({ title: inspiration });
   };
 
   deleteNote = id => {
