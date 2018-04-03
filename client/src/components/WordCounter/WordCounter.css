@@ -1,3 +1,8 @@
 .word-counter {
     text-align: left;
+    margin-top: 0;
+}
+
+#word-count {
+    margin-top: 0;
 }

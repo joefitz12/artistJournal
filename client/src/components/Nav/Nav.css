@@ -1,0 +1,38 @@
+.navbar-inverse {
+    background-color: #73D1B8;
+    border-color: #7BE0AD;
+    font-family: 'Amatic SC', "cursive";
+}
+
+li {
+    list-style-type: none;
+}
+
+#app-name-logo {
+    color: #ffffff;
+    font-size: 50px;
+}
+
+#app-name-logo:hover,
+#app-name-logo:focus {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.caret {
+    display: none;
+}
+
+.dropdown-menu {
+    font-size: 30px;
+}
+
+.dropdown-menu>li>a:hover {
+    background-color: #73D1B8;
+    color: #fff;
+}
+
+/* .dropdown-menu[aria-labelledby = app-name-logo]:hover,
+.dropdown-menu[aria-labelledby = app-name-logo]:focus {
+    background-color: #73D1B8;
+} */

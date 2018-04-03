@@ -6,7 +6,6 @@ import API from "./utils/API";
 import obliqueStratAPI from "./utils/obliqueStratAPI";
 import Home from "./pages/Home";
 import Journal from "./pages/Journal";
-import Note from "./pages/Note";
 import Write from "./pages/Write";
 import Preferences from "./pages/Preferences";
 import NoMatch from "./pages/NoMatch";
@@ -24,6 +23,7 @@ class App extends Component {
     theme: "",
     allNotes: [],
     notes: [],
+    selectedNote: {},
     title: "",
     body: "",
     inspiration: "",
@@ -62,16 +62,13 @@ class App extends Component {
       .then(res => {
         console.log("loadNotes res:", res);
         this.setState({ allNotes: res.data, notes: res.data, title: "", body: "" })
-      }
-      )
+      })
       .catch(err => console.log(err));
   };
 
   searchNotes = () => {
-    console.log("searchNotes search: ", this.state.search);
     let filteredNotes = this.state.allNotes.filter(note => (note.title.toLowerCase().includes(this.state.search.toLowerCase()) || note.body.toLowerCase().includes(this.state.search.toLowerCase())));
     !this.state.search ? this.setState({ notes: this.state.allNotes }) : this.setState({ notes: filteredNotes });
-    console.log("this.state.notes: ", this.state.notes);
   };
 
   updateSearch = (event) => {
@@ -81,6 +78,14 @@ class App extends Component {
     }, this.searchNotes);
   };
 
+  selectNote = (id) => {
+    for (let key in this.state.notes) {
+      if (this.state.notes[key]._id === id) {
+        this.setState({ selectedNote: this.state.notes[key] })
+      }
+    }
+  };
+
   loadInspiration = () => {
     let inspiration = obliqueStratAPI.getInspiration();
     this.setState({ inspiration: inspiration });
@@ -88,7 +93,7 @@ class App extends Component {
 
   deleteNote = id => {
     API.deleteNote(id)
-      .then(res => this.loadNotes())
+      .then(res => this.loadNotes(this.state.id))
       .catch(err => console.log(err));
   };
 
@@ -133,8 +138,7 @@ class App extends Component {
           <Nav />
           <Switch>
             <Route exact path="/" render={() => <Home />} />
-            <Route exact path="/journal" render={() => <Journal search={this.state.search} notes={this.state.notes} deleteNote={this.deleteNote} updateSearch={this.updateSearch} />} />
-            <Route exact path="/journal/:id" component={Note} />
+            <Route exact path="/journal" render={() => <Journal search={this.state.search} notes={this.state.notes} selectedNote={this.state.selectedNote} selectNote={this.selectNote} deleteNote={this.deleteNote} updateSearch={this.updateSearch} />} />
             <Route exact path="/write" render={() => <Write title={this.state.title} body={this.state.body} inspiration={this.state.inspiration} loadInspiration={this.loadInspiration} handleInputChange={this.handleInputChange} handleNoteSubmit={this.handleNoteSubmit} />} />
             <Route exact path="/preferences" render={() => <Preferences id={this.state.id} email={this.state.email} phone={this.state.phone} firstName={this.state.firstName} textNotifications={this.state.textNotifications} emailNotifications={this.state.emailNotifications} theme={this.state.theme} handleInputChange={this.handleInputChange} handlePrefSubmit={this.handlePrefSubmit} />} />
             <Route component={NoMatch} />
