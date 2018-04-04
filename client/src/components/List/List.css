@@ -32,3 +32,12 @@
 .list-overflow-container li:last-child {
   border-bottom: none;
 }
+
+.delete-btn {
+  display: none;
+}
+
+.list-group-item:hover>.delete-btn {
+  display: block;
+  line-height: 1.75;
+}

@@ -13,12 +13,12 @@ import "./Preferences.css";
 const Preferences = (props) => (
   <Container fluid>
     <Row>
-      <Col size="md-1">
+      <Col id="preferences-title-col" size="md-1">
         <SidewaysTitle divStyle1={{ background: "#FFD97D", border: "0 1px solid #FFCA3A" }} titleStyle={{ left: "-9vw", top: "130px" }}>
           preferences
         </SidewaysTitle>
       </Col>
-      <Col size="md-6 sm-12">
+      <Col size="md-4 sm-12">
         <h1>artist info & prefs</h1> 
         <h2>chosen name</h2>
         <Input
@@ -64,10 +64,10 @@ const Preferences = (props) => (
         <FormBtn
           onClick={props.handlePrefSubmit}
         >
-          Save Changes
+          save changes
         </FormBtn>
       </Col>
-      <Col size="md-4">
+      <Col size="md-6">
         {!props.allNotes[0] ? "" :
           <div>
             <h1>the goods</h1>

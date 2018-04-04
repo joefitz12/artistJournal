@@ -27,12 +27,13 @@ const Write = (props) => (
             <Input
               value={props.title}
               onChange={props.handleInputChange}
+              id="write-inspiration-input"
               name="title"
               placeholder="inspiration"
             />
           </Col>
           <Col size="md-2">
-            <Inspiration loadInspiration={props.loadInspiration} />
+            <Inspiration id="write-inspiration-btn" loadInspiration={props.loadInspiration} />
           </Col>
           <Col size="md-12">
             <TextArea
@@ -56,7 +57,7 @@ const Write = (props) => (
         </Row>
         <Row>
           <Col size="md-2">
-            <Link to="/journal">← Back to Journal</Link>
+            <Link to="/journal">← to journal</Link>
           </Col>
         </Row>
       </Col>
