@@ -17,3 +17,7 @@ select {
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     margin-bottom: 15px;
 }
+
+#preferences-title-col {
+    margin-right: 15px;
+}
