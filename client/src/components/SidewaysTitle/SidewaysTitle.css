@@ -1,5 +1,5 @@
 .sideways-div {
-    position: relative;
+    position: absolute;
     height: 100%;
     width: 100%;
 }

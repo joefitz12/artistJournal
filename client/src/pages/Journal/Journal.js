@@ -15,33 +15,26 @@ const Journal = (props) => (
   <Container fluid>
     <Row>
       <Col size="md-1">
-        <SidewaysTitle divStyle={{ background: "#FFA987" }} titleStyle={{ left: "-12vw", top: "170px" }}>
+        <SidewaysTitle divStyle1={{ background: "#FFA987", border: "0 1px solid #FCDEBE" }} titleStyle={{ left: "-12vw", top: "170px" }}>
           free thoughts
         </SidewaysTitle>
       </Col>
       <Col size="md-10">
         <Row>
-          <Col size="md-12 sm-12">
-            <Jumbotron>
-              <h1>My Notes</h1>
-            </Jumbotron>
-            <Input
+          <Col size="md-6 sm-12">
+          <Input
               value={props.search}
               onChange={props.updateSearch}
               name="search"
               placeholder="Search"
             />
-          </Col>
-        </Row>
-        <Row>
-          <Col size="md-6 sm-12">
             {props.notes ? (
               <List>
                 {props.notes.map(note => (
                   <ListItem key={note._id}>
                     <a onClick={() => props.selectNote(note._id)}>
                       <strong>
-                        {`${note.date.substring(5, 10)}-${note.date.substring(0, 4)} - ${note.title}`}
+                        {`${note.date.substring(5, 10)}-${note.date.substring(2, 4)} - ${note.title}`}
                       </strong>
                     </a>
                     <DeleteBtn onClick={() => props.deleteNote(note._id)} />

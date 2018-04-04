@@ -15,7 +15,7 @@ const Write = (props) => (
   <Container fluid>
     <Row>
       <Col id="freewrite-title-col" size="md-1">
-        <SidewaysTitle divStyle={{ background: "#23395B" }} titleStyle={{ left: "-7vw", top: "100px" }}>
+        <SidewaysTitle divStyle1={{ background: "#4D6CA5", border: "0 1px #4862A0" }} titleStyle={{ left: "-7vw", top: "100px" }}>
           freewrite
         </SidewaysTitle>
       </Col>
