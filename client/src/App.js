@@ -14,7 +14,7 @@ import Nav from "./components/Nav";
 class App extends Component {
 
   state = {
-    id: "5aba6c1424123a9e59ca4c74",
+    id: "5ac5001de3bcd21d53cdf105",
     email: "",
     phone: 0,
     firstName: "",
@@ -86,6 +86,10 @@ class App extends Component {
     }
   };
 
+  newNote = () => {
+    this.setState({selectedNote: {}, title: "", body: "", search: "", notes: this.state.allNotes})
+  }
+
   loadInspiration = () => {
     let inspiration = obliqueStratAPI.getInspiration();
     this.setState({ inspiration: inspiration });
@@ -139,7 +143,7 @@ class App extends Component {
           <Nav />
           <Switch>
             <Route exact path="/" render={() => <Home />} />
-            <Route exact path="/journal" render={() => <Journal search={this.state.search} notes={this.state.notes} selectedNote={this.state.selectedNote} selectNote={this.selectNote} deleteNote={this.deleteNote} updateSearch={this.updateSearch} />} />
+            <Route exact path="/journal" render={() => <Journal search={this.state.search} notes={this.state.notes} selectedNote={this.state.selectedNote} title={this.state.title} body={this.state.body} selectNote={this.selectNote} deleteNote={this.deleteNote} newNote={this.newNote} updateSearch={this.updateSearch} loadInspiration={this.loadInspiration} handleNoteSubmit={this.handleNoteSubmit} handleInputChange={this.handleInputChange} />} />
             <Route exact path="/write" render={() => <Write title={this.state.title} body={this.state.body} inspiration={this.state.inspiration} loadInspiration={this.loadInspiration} handleInputChange={this.handleInputChange} handleNoteSubmit={this.handleNoteSubmit} />} />
             <Route exact path="/preferences" render={() => <Preferences id={this.state.id} allNotes={this.state.allNotes} email={this.state.email} phone={this.state.phone} firstName={this.state.firstName} textNotifications={this.state.textNotifications} emailNotifications={this.state.emailNotifications} theme={this.state.theme} handleInputChange={this.handleInputChange} handlePrefSubmit={this.handlePrefSubmit} />} />
             <Route component={NoMatch} />

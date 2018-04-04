@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import DeleteBtn from "../../components/DeleteBtn";
 import Note from "../../components/Note";
+import Write from "../Write";
 import SidewaysTitle from "../../components/SidewaysTitle";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
@@ -22,12 +23,22 @@ const Journal = (props) => (
       <Col size="md-10">
         <Row>
           <Col size="md-6 sm-12">
-          <Input
-              value={props.search}
-              onChange={props.updateSearch}
-              name="search"
-              placeholder="Search"
-            />
+            <Row>
+              <Col size="md-9">
+                <Input
+                  value={props.search}
+                  onChange={props.updateSearch}
+                  id="search-bar-input"
+                  name="search"
+                  placeholder="Search"
+                />
+              </Col>
+              <Col size="md-3">
+                <FormBtn id="new-note-btn" onClick={props.newNote}>
+                  new note
+                </FormBtn>
+              </Col>
+            </Row>
             {props.notes ? (
               <List>
                 {props.notes.map(note => (
@@ -47,10 +58,10 @@ const Journal = (props) => (
           </Col>
           <Col size="md-6 sm-12">
             {props.selectedNote.title ? (
-              <Note title={props.selectedNote.title} body={props.selectedNote.body} />
+              <Note title={props.selectedNote.title} body={props.selectedNote.body} handleNoteSubmit={props.handleNoteSubmit} loadInspiration={props.loadInspiration} handleInputChange={props.handleInputChange} />
             )
               : (
-                <h3>Select a note to read</h3>
+                <Note title={props.title} body={props.body} handleNoteSubmit={props.handleNoteSubmit} loadInspiration={props.loadInspiration} handleInputChange={props.handleInputChange} />
               )
             }
           </Col>
