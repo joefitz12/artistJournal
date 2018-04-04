@@ -5,7 +5,7 @@ import "./DeleteBtn.css";
 // That way we don't have to define them all individually
 const DeleteBtn = props => (
   <span className="delete-btn" {...props}>
-    ✗
+    <i class="far fa-times-circle"></i>
   </span>
 );
 

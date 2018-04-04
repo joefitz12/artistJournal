@@ -9,6 +9,7 @@ const Inspiration = (props) =>
     <div className="inspiration-div">
         <FormBtn
             onClick={props.loadInspiration}
+            id={props.id}
         >
             get inspiration
         </FormBtn>
