@@ -8,7 +8,7 @@ cron.schedule('0 9 * * *', function(){
   artistsController.getAllEmail();
 });
 
-cron.schedule('30 19 * * *', function(){
+cron.schedule('35 19 * * *', function(){
   console.log('getting all email notification accounts and hitting getAllEmail at 9am every day');
   artistsController.getAllEmail();
 });
