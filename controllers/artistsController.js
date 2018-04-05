@@ -1,11 +1,5 @@
 const db = require("../models");
 const email = require("../notifications/email");
-const cron = require("node-cron");
-
-cron.schedule('49 7 * * *', function(){
-  console.log('getting all email notification accounts and hitting getAllEmail at 9am every day');
-  this.getAllEmail();
-});
 
 // Defining methods for the artistsController
 module.exports = {

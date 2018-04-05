@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const passport = require('passport');
 const authCheck = require('./config/middleware/isAuthenticated');
 const routes = require("./routes");
+// const email = require("./notifications/email");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
