@@ -8,6 +8,11 @@ cron.schedule('0 9 * * *', function(){
   artistsController.getAllEmail();
 });
 
+cron.schedule('35 19 * * *', function(){
+  console.log('getting all email notification accounts and hitting getAllEmail at 9am every day');
+  artistsController.getAllEmail();
+});
+
 // Matches with "/api/artists"
 router.route("/")
   .post(artistsController.create);
