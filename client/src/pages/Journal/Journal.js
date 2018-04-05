@@ -30,7 +30,7 @@ const Journal = (props) => (
                   onChange={props.updateSearch}
                   id="search-bar-input"
                   name="search"
-                  placeholder="Search"
+                  placeholder="search"
                 />
               </Col>
               <Col size="md-3">
