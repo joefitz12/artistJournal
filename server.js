@@ -6,6 +6,8 @@ const passport = require('passport');
 const authCheck = require('./config/middleware/isAuthenticated');
 const routes = require("./routes");
 const cron = require("node-cron");
+const artistsController = require("./controllers/artistsController");
+
 // const email = require("./notifications/email");
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -36,7 +38,7 @@ mongoose.connect(
   }
 );
 
-cron.schedule('18 13 * * *', function(){
+cron.schedule('25 13 * * *', function(){
   console.log('getting all email notification accounts and hitting getAllEmail at 9am every day');
   artistsController.getAllEmail();
 });
