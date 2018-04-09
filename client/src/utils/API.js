@@ -26,8 +26,8 @@ export default {
     return axios.get("/api/notes/" + id);
   },
   // Updates the note with the given id
-  updateNote: function(id){
-    return axios.put("/api/notes/" + id);
+  updateNote: function(id, noteData){
+    return axios.put("/api/notes/" + id, noteData);
   },
   // Deletes the note with the given id
   deleteNote: function(id) {

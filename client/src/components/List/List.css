@@ -41,3 +41,12 @@
   display: block;
   line-height: 1.75;
 }
+
+#date-container {
+  display: inline-block;
+  height: 100%;
+  padding-right: 10px;
+  margin-right: 10px;
+  border-right: 1px solid #dddddd;
+  cursor: default;
+}

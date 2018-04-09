@@ -2,7 +2,6 @@
 
 import React from "react";
 import { FormBtn } from "../../components/Form";
-import Jumbotron from "../../components/Jumbotron";
 import "./Inspiration.css";
 
 const Inspiration = (props) =>

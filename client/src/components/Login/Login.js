@@ -1,7 +1,7 @@
 //jshint ignore: start
 
 import React from "react";
-import { Input, TextArea, FormBtn } from "../Form";
+import { Input, FormBtn } from "../Form";
 import "./Login.css";
 
 // The ...props means, spread all of the passed props onto this element
