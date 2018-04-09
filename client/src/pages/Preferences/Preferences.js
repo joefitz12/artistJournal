@@ -1,13 +1,9 @@
 //jshint ignore: start
 
 import React from "react";
-import Jumbotron from "../../components/Jumbotron";
 import SidewaysTitle from "../../components/SidewaysTitle";
-import API from "../../utils/API";
-import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
-import { List, ListItem } from "../../components/List";
-import { Input, TextArea, FormBtn } from "../../components/Form";
+import { Input, FormBtn } from "../../components/Form";
 import "./Preferences.css";
 
 const Preferences = (props) => (
@@ -68,11 +64,11 @@ const Preferences = (props) => (
         </FormBtn>
       </Col>
       <Col size="md-6">
-        {!props.allNotes[0] ? "" :
+        {!props.artistProgress.noteCount ? "" :
           <div>
-            <h1>the goods</h1>
-            <h2>you've written {props.allNotes.length} notes</h2>
-            <h2>the last time you freewrote was {props.allNotes[0].date.substring(5, 10) + "-" + props.allNotes[0].date.substring(2, 4)}</h2>
+            <h1>be proud of your accomplishments.</h1>
+            <h2>you've written: {props.artistProgress.noteCount} notes; {props.artistProgress.wordCount} words.</h2>
+            <h2>the last time you freewrote was {props.artistProgress.lastEntryDate}.</h2>
           </div>
         }
       </Col>

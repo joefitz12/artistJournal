@@ -1,11 +1,8 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import { Col, Row, Container } from "../../components/Grid";
-import Jumbotron from "../../components/Jumbotron";
 import Inspiration from "../../components/Inspiration";
 import WordCounter from "../../components/WordCounter";
 import { Input, TextArea, FormBtn } from "../../components/Form";
-import API from "../../utils/API";
 import "./Note.css";
 
 const Note = (props) => (
@@ -36,7 +33,7 @@ const Note = (props) => (
               />
             </Col>
             <Col size="md-4">
-              <WordCounter body={props.body} />
+              <WordCounter wordCount={props.wordCount} />
             </Col>
             <Col size="md-8">
               <FormBtn

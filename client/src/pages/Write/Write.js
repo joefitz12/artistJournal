@@ -1,11 +1,9 @@
 //jshint-ignore: start
 
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
-import Jumbotron from "../../components/Jumbotron";
 import Inspiration from "../../components/Inspiration";
-import API from "../../utils/API";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 import WordCounter from "../../components/WordCounter";
 import SidewaysTitle from "../../components/SidewaysTitle";
