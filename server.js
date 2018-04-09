@@ -38,10 +38,12 @@ mongoose.connect(
   }
 );
 
-cron.schedule('32 13 * * *', function(){
+let emailNotifications = cron.schedule('42 13 * * *', function(){
   console.log('getting all email notification accounts and hitting getAllEmail at 9am every day');
   artistsController.getAllEmail();
-}, true);
+});
+
+emailNotifications.start();
 
 // Start the API server
 app.listen(PORT, function () {
