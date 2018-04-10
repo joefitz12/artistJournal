@@ -1,5 +1,4 @@
 const db = require("../models");
-const email = require("../notifications/email");
 
 // Defining methods for the artistsController
 module.exports = {
@@ -12,24 +11,7 @@ module.exports = {
   getAllEmail: function () {
     db.Artist
       .find({ emailNotifications: true })
-      .then(notificationAccounts => {
-        notificationAccounts.forEach(account => {
-          let mailOptions = {
-            from: 'artistJournalApp@gmail.com',
-            to: account.email,
-            subject: 'Time to Freewrite!',
-            text: 'Become the artist you were born to be. Freewrite today!'
-          };
-
-          email.sendMail(mailOptions, function (error, info) {
-            if (error) {
-              console.log(error);
-            } else {
-              console.log('Email sent: ' + info.response);
-            }
-          });
-        });
-      })
+      .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   findById: function (req, res) {
