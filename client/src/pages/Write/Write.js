@@ -42,7 +42,7 @@ const Write = (props) => (
             />
           </Col>
           <Col size="md-4">
-            <WordCounter body={props.body} />
+            <WordCounter wordCount={props.wordCount} />
           </Col>
           <Col size="md-8">
             <FormBtn
