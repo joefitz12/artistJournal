@@ -3,7 +3,7 @@ var http = require('http'); //importing http
 var options = {
     host: 'artistjournal.herokuapp.com',
     port: 80,
-    path: '/write'
+    path: '/'
 };
 console.log("======WAKUP DYNO START");
 http.get(options, function(res) {
