@@ -1,5 +1,20 @@
-//links artistsController, where the get routes for artists who opt in to daily notifications exists
-const artistsController = require("./controllers/artistsController");
+var http = require('http'); //importing http
 
-//runs email notification function
-artistsController.getAllEmail();
+var options = {
+    host: 'artistjournal.herokuapp.com',
+    port: 80,
+    path: '/write'
+};
+console.log("======WAKUP DYNO START");
+http.get(options, function(res) {
+    res.on('data', function(chunk) {
+        try {
+            // optional logging... disable after it's working
+            console.log("======WAKUP DYNO: HEROKU RESPONSE: " + chunk);
+        } catch (err) {
+            console.log(err.message);
+        }
+    });
+}).on('error', function(err) {
+    console.log("Error: " + err.message);
+});

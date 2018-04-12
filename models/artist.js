@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+var Promise = require("bluebird");
+Promise.promisifyAll(mongoose);
 const bcrypt = require("bcrypt-nodejs");
 const SALT_WORK_FACTOR = 10;
 // const passportLocalMongoose = require('passport-local-mongoose');
