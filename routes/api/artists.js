@@ -13,6 +13,9 @@ const passport = require("../../config/passport");
 router.route("/")
   .post(artistsController.create);
 
+  router.route("/email")
+  .get(artistsController.getAllEmail);
+
 // Checks login info against db
 router.route("/login")
   .post(passport.authenticate("local"), artistsController.login);

@@ -9,6 +9,10 @@ export default {
   getArtist: function(id) {
     return axios.get("/api/artists/" + id);
   },
+  // Gets artists for email
+  getAllEmail: function() {
+    return axios.get("/api/artists/email");
+  },
   // Gets artist info
   saveArtist: function(id, artistData) {
     return axios.put("/api/artists/" + id, artistData);
@@ -35,7 +39,6 @@ export default {
   },
   // Saves a note to the database
   saveNote: function(noteData) {
-    console.log("this is api.savenote noteData: ", noteData);
     return axios.post("/api/notes", noteData);
   }
 };
