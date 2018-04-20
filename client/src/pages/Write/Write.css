@@ -9,3 +9,12 @@
 #write-inspiration-btn {
     margin-top: 15px;
 }
+
+#journal-link>a {
+    color: #23395B;
+}
+
+#journal-link>a:hover {
+    color: #73D1B8;
+    text-decoration: none;
+}

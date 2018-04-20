@@ -11,10 +11,37 @@ router.use("/api", apiRoutes);
 //   res.sendFile(path.join(__dirname, "../public/login.html"));
 // });
 
+
+
+// router.use("/write", function (req, res) {
+//   console.log(arguments[0]);
+//   console.log("hit write route");
+//   res.sendFile(path.join(__dirname, "../client/build/index.html"));
+// });
+
 // If no API routes are hit, send the React app
 // router.use(isAuthenticated, function (req, res) {
-//     res.sendFile(path.join(__dirname, "../public/index.html"));
+//   console.log("hit * route");
+//   res.sendFile(path.join(__dirname, "../client/build/index.html"));
 // });
+// router.use("/login", function (req, res) {
+//   console.log(arguments[0].baseUrl);
+//   console.log("hit login route");
+//   res.sendFile(path.join(__dirname, "../client/build/index.html"));
+// });
+// router.use("/*", function(req, res){
+//   if(arguments[0].baseUrl === "/login"){
+//     console.log("hit login route");
+//     res.sendFile(path.join(__dirname, "../client/build/index.html"));
+//   }
+//   else{
+//     router.use(isAuthenticated, function (req, res) {
+//         console.log("hit * route");
+//         res.sendFile(path.join(__dirname, "../client/build/index.html"));
+//     });
+//   }
+// });
+
 router.use(function (req, res) {
   res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });

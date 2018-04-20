@@ -10,7 +10,6 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   getAllEmail: function (req, res) {
-    console.log("getAllEmail hit");
     db.Artist
       .findAsync({ emailNotifications: true })
       .then(notificationAccounts => {

@@ -20,6 +20,7 @@ app.use(express.static("client/build"));
 // Add routes, both API and view
 // pass the authenticaion checker middleware
 
+
 // Initializes passport
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());

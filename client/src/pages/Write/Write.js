@@ -54,7 +54,7 @@ const Write = (props) => (
           </Col>
         </Row>
         <Row>
-          <Col size="md-2">
+          <Col id="journal-link" size="md-2">
             <Link to="/journal">← to journal</Link>
           </Col>
         </Row>
