@@ -18,7 +18,7 @@ router.route("/")
 
 // Checks login info against db
 router.route("/login")
-  .post(passport.authenticate("local"), artistsController.login);
+  .post(passport.authenticate("local", { failureRedirect: '/login' }), artistsController.login);
 
 // Matches with "/api/artists/:id"
 router.route("/:id")

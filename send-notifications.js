@@ -5,6 +5,7 @@ var options = {
     port: 80,
     path: '/'
 };
+
 console.log("======WAKUP DYNO START");
 http.get(options, function(res) {
     res.on('data', function(chunk) {

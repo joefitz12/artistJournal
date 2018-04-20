@@ -69,6 +69,7 @@ const Preferences = (props) => (
             <h1>be proud of your accomplishments.</h1>
             <h2>you've written: {props.artistProgress.noteCount} notes; {props.artistProgress.wordCount} words.</h2>
             <h2>the last time you freewrote was {props.artistProgress.lastEntryDate}.</h2>
+            <h2>your current streak: {props.artistProgress.currentStreak}.</h2>
           </div>
         }
       </Col>

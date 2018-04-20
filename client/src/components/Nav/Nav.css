@@ -21,7 +21,17 @@ li {
 #app-name-logo:hover,
 #app-name-logo:focus {
     text-decoration: none;
-    color: #ffffff;
+}
+
+.nav-link {
+    color: #222;
+    width: 100%;
+}
+
+.nav-link:hover {
+    background-color: #73D1B8;
+    color: #fff;
+    text-decoration: none;
 }
 
 .caret {
@@ -36,6 +46,21 @@ li {
     background-color: #73D1B8;
     color: #fff;
 }
+
+.nav-link-container:hover>a>.nav-link {
+    background-color: #73D1B8;
+    color: #fff;
+}
+
+/* a {
+    color: #23395B;
+}
+
+a:hover {
+    color: #73D1B8;
+    text-decoration: none;
+} */
+
 
 /* .dropdown-menu[aria-labelledby = app-name-logo]:hover,
 .dropdown-menu[aria-labelledby = app-name-logo]:focus {

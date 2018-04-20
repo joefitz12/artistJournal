@@ -1,6 +1,7 @@
 //jshint ignore: start
 
 import React, { Component } from "react";
+import moment from "moment";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import API from "./utils/API";
 import obliqueStratAPI from "./utils/obliqueStratAPI";
@@ -14,8 +15,13 @@ import Nav from "./components/Nav";
 class App extends Component {
 
   state = {
-    id: "5ac5001de3bcd21d53cdf105",
+    // isAuthorized: true,
+    // id: "5ac5001de3bcd21d53cdf105",
+    // isAuthorized: false,
+    login: true,
+    // id: "",
     email: "",
+    password: "",
     phone: 0,
     firstName: "",
     emailNotifications: "",
@@ -59,22 +65,68 @@ class App extends Component {
   loadNotes = (id) => {
     API.getAllNotes(id)
       .then(res => {
-        this.setState({ allNotes: res.data, notes: res.data, title: "", body: "" }, () => this.getProgress())
+        this.setState({ allNotes: res.data, notes: res.data, title: "", body: "" }, () => this.updateProgress())
       })
       .catch(err => console.log(err));
   };
 
-  getProgress = () => {
+  updateProgress = () => {
     let noteCount = this.state.allNotes.length;
     let wordCount = this.state.allNotes.reduce((total, current) => current.body.trim().split(" ").filter(word => word !== "").length + total, 0);
     // eslint-disable-next-line radix
-    let lastEntryDate = parseInt(this.state.allNotes[0].date.substring(5, 7)) + "-" + parseInt(this.state.allNotes[0].date.substring(8, 10)) + "-" + parseInt(this.state.allNotes[0].date.substring(2, 4));
+    let lastEntryDate = this.state.allNotes.length > 0 ? parseInt(this.state.allNotes[0].date.substring(5, 7)) + "-" + parseInt(this.state.allNotes[0].date.substring(8, 10)) + "-" + parseInt(this.state.allNotes[0].date.substring(2, 4)) : 0;
+
+    let differenceCounter = this.calcDateDifference(this.state.allNotes);
+
+    let currentStreak = this.updateCurrentStreak(differenceCounter);
+
     let artistProgress = {
       noteCount,
       wordCount,
-      lastEntryDate
+      lastEntryDate,
+      differenceCounter,
+      currentStreak
     };
+
     this.setState({ artistProgress });
+  }
+
+  updateCurrentStreak = (arr) => {
+    if (arr[0] > 1) {
+      return 0;
+    }
+    else {
+      let streak = 1;
+      for (let i = 1; i < arr.length; i++) {
+        if (arr[i] <= 1) {
+          streak = streak + arr[i]
+        }
+        else {
+          return streak;
+        }
+      }
+    }
+  }
+
+  calcDateDifference = (notes) => {
+
+    let streakCounter = [];
+    let currentDate = moment().format("MMM Do YY");
+
+    for (let i = 0; i < notes.length; i++) {
+      if (notes[i + 1]) {
+        let date1 = moment(notes[i].date).format("MMM Do YY");
+        let date2 = moment(notes[i + 1].date).format("MMM Do YY");
+        streakCounter.push(moment(date1, "MMM Do YY").diff(moment(date2, "MMM Do YY"), "days"))
+      }
+      else {
+        let lastDate = moment(notes[0].date).format("MMM Do YY");
+        streakCounter = [(moment(currentDate, "MMM Do YY").diff(moment(lastDate, "MMM Do YY"), "days")), ...streakCounter]
+      }
+    }
+
+    return streakCounter;
+
   }
 
   searchNotes = () => {
@@ -123,11 +175,56 @@ class App extends Component {
     this.setState({ wordCount: wordCount });
   }
 
+  switchNav = () => {
+    this.state.login === true ? this.setState({ login: false }) : this.setState({ login: true });
+  };
+
+  handleEmailNotificationChange = () => {
+    this.state.emailNotifications === true ? this.setState({ emailNotifications: false }) : this.setState({ emailNotifications: true });
+  }
+
+  handleTextNotificationChange = () => {
+    this.state.textNotifications === true ? this.setState({ textNotifications: false }) : this.setState({ textNotifications: true });
+  }
+
+  handleLogin = event => {
+    event.preventDefault();
+    API.login({
+      email: this.state.email,
+      password: this.state.password
+    })
+      .then(data => {
+        // console.log("data: ", data);
+        // console.log("data.data._id: ", data.data._id);
+        // let id = data.data._id;
+        this.setState({ id: data.data._id, isAuthorized: true },()=>this.componentDidMount());
+        // If there's an error, log the error
+        // this.componentDidMount();
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  };
+
+  handleCreateArtist = event => {
+    event.preventDefault();
+    API.createArtist({
+      email: this.state.email,
+      password: this.state.password,
+      phone: this.state.phone,
+      firstName: this.state.firstName,
+      emailNotifications: this.state.emailNotifications,
+      textNotifications: this.state.textNotifications,
+    })
+      .then(res => console.log("res: ", res))
+      .catch(err => console.log(err));
+  };
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
       [name]: value
-    }, () => this.countWords(this.state.body))
+    }, () => this.countWords(this.state.body));
   };
 
   handlePrefSubmit = event => {
@@ -163,6 +260,7 @@ class App extends Component {
           body: this.state.body
         })
           .then(res => this.loadNotes(this.state.id))
+          .then(() => this.updateProgress())
           .catch(err => console.log(err));
       }
     }
@@ -174,10 +272,19 @@ class App extends Component {
         <div>
           <Nav />
           <Switch>
-            <Route exact path="/login" render={() => <Home />} />
-            <Route exact path="/" render={() => <Journal search={this.state.search} notes={this.state.notes} selectedNote={this.state.selectedNote} title={this.state.title} body={this.state.body} selectNote={this.selectNote} deleteNote={this.deleteNote} newNote={this.newNote} updateSearch={this.updateSearch} loadInspiration={this.loadInspiration} handleNoteSubmit={this.handleNoteSubmit} handleInputChange={this.handleInputChange} wordCount={this.state.wordCount} />} />
-            <Route exact path="/write" render={() => <Write title={this.state.title} body={this.state.body} inspiration={this.state.inspiration} loadInspiration={this.loadInspiration} handleInputChange={this.handleInputChange} handleNoteSubmit={this.handleNoteSubmit} wordCount={this.state.wordCount} />} />
-            <Route exact path="/preferences" render={() => <Preferences id={this.state.id} artistProgress={this.state.artistProgress} email={this.state.email} phone={this.state.phone} firstName={this.state.firstName} textNotifications={this.state.textNotifications} emailNotifications={this.state.emailNotifications} theme={this.state.theme} handleInputChange={this.handleInputChange} handlePrefSubmit={this.handlePrefSubmit} />} />
+            <Route exact path="/login" render={() => <Home state={this.state} switchNav={this.switchNav} handleEmailNotificationChange={this.handleEmailNotificationChange} handleTextNotificationChange={this.handleTextNotificationChange} handleLogin={this.handleLogin} handleCreateArtist={this.handleCreateArtist} handleInputChange={this.handleInputChange} />} />
+            <Route exact path="/journal" 
+              render={() => this.state.isAuthorized && this.state.id ? 
+              <Journal search={this.state.search} notes={this.state.notes} selectedNote={this.state.selectedNote} title={this.state.title} body={this.state.body} selectNote={this.selectNote} deleteNote={this.deleteNote} newNote={this.newNote} updateSearch={this.updateSearch} loadInspiration={this.loadInspiration} handleNoteSubmit={this.handleNoteSubmit} handleInputChange={this.handleInputChange} wordCount={this.state.wordCount} /> :
+              <Home state={this.state} switchNav={this.switchNav} handleEmailNotificationChange={this.handleEmailNotificationChange} handleTextNotificationChange={this.handleTextNotificationChange} handleLogin={this.handleLogin} handleCreateArtist={this.handleCreateArtist} handleInputChange={this.handleInputChange} />} />
+            <Route exact path="/write" 
+              render={() => this.state.isAuthorized && this.state.id ? 
+              <Write title={this.state.title} body={this.state.body} inspiration={this.state.inspiration} loadInspiration={this.loadInspiration} handleInputChange={this.handleInputChange} handleNoteSubmit={this.handleNoteSubmit} wordCount={this.state.wordCount} /> :
+              <Home state={this.state} switchNav={this.switchNav} handleEmailNotificationChange={this.handleEmailNotificationChange} handleTextNotificationChange={this.handleTextNotificationChange} handleLogin={this.handleLogin} handleCreateArtist={this.handleCreateArtist} handleInputChange={this.handleInputChange} />} />
+            <Route exact path="/preferences" 
+              render={() => this.state.isAuthorized && this.state.id ? 
+              <Preferences id={this.state.id} artistProgress={this.state.artistProgress} email={this.state.email} phone={this.state.phone} firstName={this.state.firstName} textNotifications={this.state.textNotifications} emailNotifications={this.state.emailNotifications} theme={this.state.theme} handleInputChange={this.handleInputChange} handlePrefSubmit={this.handlePrefSubmit} /> :
+              <Home state={this.state} switchNav={this.switchNav} handleEmailNotificationChange={this.handleEmailNotificationChange} handleTextNotificationChange={this.handleTextNotificationChange} handleLogin={this.handleLogin} handleCreateArtist={this.handleCreateArtist} handleInputChange={this.handleInputChange} />} />
             <Route component={NoMatch} />
           </Switch>
         </div>
@@ -188,3 +295,4 @@ class App extends Component {
 
 
 export default App;
+
