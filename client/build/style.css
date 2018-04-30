@@ -3,15 +3,6 @@ body {
     background-color: whitesmoke;
 }
 
-a {
-    color: #23395B;
-}
-
-a:hover {
-    color: #73D1B8;
-    text-decoration: none;
-}
-
 h1,
 h2 {
     font-family: 'Vollkorn', serif;
