@@ -241,7 +241,13 @@ class App extends Component {
       .then(() => API.login({
         email: this.state.email,
         password: this.state.password
-      }))
+      })
+        .then(data => {
+          this.setState({ id: data.data._id, isAuthorized: true, password: "" }, ()=>this.successfulLogin());
+        })
+        .catch(function (err) {
+          console.log(err);
+        }))
       .catch(err => console.log(err));
   };
 
