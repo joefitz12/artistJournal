@@ -10,7 +10,7 @@ const Inspiration = (props) =>
             onClick={props.loadInspiration}
             id={props.id}
         >
-            get inspiration
+            get
         </FormBtn>
     </div>;
 

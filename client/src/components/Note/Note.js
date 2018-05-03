@@ -11,7 +11,7 @@ const Note = (props) => (
         <Col size="md-12">
           <Row>
   
-            <Col size="md-9">
+            <Col size="md-10 sm-10 xs-10">
   
               <Input
                 value={props.title}
@@ -21,9 +21,11 @@ const Note = (props) => (
                 placeholder="inspiration"
               />
             </Col>
-            <Col size="md-3">
+            <Col size="md-2 sm-2 xs-2">
               <Inspiration id="inspiration-button" loadInspiration={props.loadInspiration} />
             </Col>
+          </Row>
+          <Row>
             <Col size="md-12">
               <TextArea
                 value={props.body}
@@ -32,10 +34,12 @@ const Note = (props) => (
                 placeholder="thoughts"
               />
             </Col>
-            <Col size="md-4">
+          </Row>
+          <Row>
+            <Col size="md-4 sm-4 xs-4">
               <WordCounter wordCount={props.wordCount} />
             </Col>
-            <Col size="md-8">
+            <Col size="md-8 sm-8 xs-8">
               <FormBtn
                 disabled={!(props.title && props.body)}
                 onClick={props.handleNoteSubmit}

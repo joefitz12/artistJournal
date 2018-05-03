@@ -41,7 +41,6 @@ class App extends Component {
   successfulLogin = () => {
     this.loadArtist(this.state.id);
     this.loadNotes(this.state.id);
-    this.loadInspiration();
   }
 
   loadArtist = id => {
