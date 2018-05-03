@@ -1,0 +1,15 @@
+#logout-btn {
+  margin-top: 15px;
+  background-color: #23395B;
+  color: #fff;
+  border-color: #fff;;
+}
+
+#logout-btn:hover,
+#logout-btn:focus,
+#logout-btn:active:hover,
+#logout-btn:active:focus {
+  background-color: #fff;
+  color: #23395B;
+  border-color: #23395B;
+}

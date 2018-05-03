@@ -9,12 +9,12 @@ import "./Preferences.css";
 const Preferences = (props) => (
   <Container fluid>
     <Row>
-      <Col id="preferences-title-col" size="md-1">
+      <Col id="preferences-title-col" size="md-1 sm-1 xs-1">
         <SidewaysTitle divStyle1={{ background: "#FFD97D", border: "0 1px solid #FFCA3A" }} titleStyle={{ left: "-9vw", top: "130px" }}>
           preferences
         </SidewaysTitle>
       </Col>
-      <Col size="md-4 sm-12">
+      <Col size="md-4 sm-10 xs-10">
         <h1>artist info & prefs</h1> 
         <h2>chosen name</h2>
         <Input
@@ -63,7 +63,7 @@ const Preferences = (props) => (
           save changes
         </FormBtn>
       </Col>
-      <Col size="md-6">
+      <Col size="md-6 sm-10 xs-10">
         {!props.artistProgress.noteCount ? "" :
           <div>
             <h1>be proud of your accomplishments.</h1>

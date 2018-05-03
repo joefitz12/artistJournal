@@ -12,7 +12,7 @@ import "./Write.css";
 const Write = (props) => (
   <Container fluid>
     <Row>
-      <Col id="freewrite-title-col" size="md-1">
+      <Col id="freewrite-title-col" size="md-1 sm-1 xs-1">
         <SidewaysTitle divStyle1={{ background: "#4D6CA5", border: "0 1px #4862A0" }} titleStyle={{ left: "-7vw", top: "100px" }}>
           freewrite
         </SidewaysTitle>
@@ -55,7 +55,7 @@ const Write = (props) => (
         </Row>
         <Row>
           <Col id="journal-link" size="md-2">
-            <Link to="/journal">← to journal</Link>
+            <Link to="/">← to journal</Link>
           </Col>
         </Row>
       </Col>
