@@ -238,7 +238,10 @@ class App extends Component {
       emailNotifications: this.state.emailNotifications,
       textNotifications: this.state.textNotifications,
     })
-      .then(res => console.log("res: ", res))
+      .then(() => API.login({
+        email: this.state.email,
+        password: this.state.password
+      }))
       .catch(err => console.log(err));
   };
 
