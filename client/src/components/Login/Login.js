@@ -6,7 +6,7 @@ import "./Login.css";
 
 // The ...props means, spread all of the passed props onto this element
 // That way we don't have to define them all individually
-const DeleteBtn = props => (
+const Login = props => (
   <span className="login-div">
     {props.state.login === false ?
       <div>
@@ -92,4 +92,4 @@ const DeleteBtn = props => (
   </span>
 );
 
-export default DeleteBtn;
+export default Login;

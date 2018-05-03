@@ -38,7 +38,7 @@ class App extends Component {
     search: ""
   };
 
-  componentDidMount() {
+  successfulLogin = () => {
     this.loadArtist(this.state.id);
     this.loadNotes(this.state.id);
     this.loadInspiration();
@@ -197,13 +197,35 @@ class App extends Component {
         // console.log("data: ", data);
         // console.log("data.data._id: ", data.data._id);
         // let id = data.data._id;
-        this.setState({ id: data.data._id, isAuthorized: true },()=>this.componentDidMount());
+        this.setState({ id: data.data._id, isAuthorized: true, password: "" },()=>this.successfulLogin());
         // If there's an error, log the error
         // this.componentDidMount();
       })
       .catch(function (err) {
         console.log(err);
       });
+  };
+
+  handleLogout = event => {
+    event.preventDefault();
+    this.setState({ 
+      id: 0, 
+      isAuthorized: false, 
+      phone: 0,
+      firstName: "",
+      emailNotifications: "",
+      textNotifications: "",
+      theme: "",
+      allNotes: [],
+      artistProgress: {},
+      notes: [],
+      selectedNote: {},
+      title: "",
+      body: "",
+      wordCount: 0,
+      inspiration: "",
+      search: "" 
+    });
   };
 
   handleCreateArtist = event => {
@@ -270,10 +292,10 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Nav />
+          <Nav isAuthorized={this.state.isAuthorized} handleLogout={this.handleLogout} />
           <Switch>
             <Route exact path="/login" render={() => <Home state={this.state} switchNav={this.switchNav} handleEmailNotificationChange={this.handleEmailNotificationChange} handleTextNotificationChange={this.handleTextNotificationChange} handleLogin={this.handleLogin} handleCreateArtist={this.handleCreateArtist} handleInputChange={this.handleInputChange} />} />
-            <Route exact path="/journal" 
+            <Route exact path="/" 
               render={() => this.state.isAuthorized && this.state.id ? 
               <Journal search={this.state.search} notes={this.state.notes} selectedNote={this.state.selectedNote} title={this.state.title} body={this.state.body} selectNote={this.selectNote} deleteNote={this.deleteNote} newNote={this.newNote} updateSearch={this.updateSearch} loadInspiration={this.loadInspiration} handleNoteSubmit={this.handleNoteSubmit} handleInputChange={this.handleInputChange} wordCount={this.state.wordCount} /> :
               <Home state={this.state} switchNav={this.switchNav} handleEmailNotificationChange={this.handleEmailNotificationChange} handleTextNotificationChange={this.handleTextNotificationChange} handleLogin={this.handleLogin} handleCreateArtist={this.handleCreateArtist} handleInputChange={this.handleInputChange} />} />

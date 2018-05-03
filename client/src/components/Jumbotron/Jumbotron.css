@@ -3,14 +3,12 @@
 }
 
 .jumbotron {
+    background: whitesmoke;
     margin-top: 15px;
     position: relative;
     padding: 0;
 }
 
-.jumbotron h1 {
-    font-family: 'Vollkorn', serif;
-    font-size: 40px;
-    padding: 10px;
-    margin: 0;
+.jumbotron h3 {
+    font-size: 20px;
 }
