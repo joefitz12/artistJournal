@@ -19,6 +19,14 @@ select {
 }
 
 #preferences-title-col {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+#artist-prefs-col,
+#artist-accomplishments-col {
+    margin-left: 15px;
     margin-right: 15px;
 }
 

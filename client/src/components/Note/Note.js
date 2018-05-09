@@ -11,7 +11,7 @@ const Note = (props) => (
         <Col size="md-12">
           <Row>
   
-            <Col size="md-10 sm-10 xs-10">
+            <Col size="md-10 sm-11 xs-10">
   
               <Input
                 value={props.title}
@@ -21,7 +21,7 @@ const Note = (props) => (
                 placeholder="inspiration"
               />
             </Col>
-            <Col size="md-2 sm-2 xs-2">
+            <Col size="md-2 sm-1 xs-2">
               <Inspiration id="inspiration-button" loadInspiration={props.loadInspiration} />
             </Col>
           </Row>
