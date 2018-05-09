@@ -17,7 +17,7 @@ const Journal = (props) => (
           free thoughts
         </SidewaysTitle>
       </Col>
-      <Col id="main-container" size="md-10 sm-11 xs-11">
+      <Col id="main-container" size="md-11 sm-11 xs-11">
         <Row>
           <Col size="md-6 sm-12">
             <Row>

@@ -55,7 +55,7 @@ const Write = (props) => (
                 disabled={!(props.title && props.body)}
                 onClick={props.handleNoteSubmit}
               >
-                Submit Note
+                submit
                 </FormBtn>
             </Col>
           </div>
