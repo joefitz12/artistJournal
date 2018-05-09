@@ -17,8 +17,8 @@ module.exports = {
           let mailOptions = {
             from: 'artistJournalApp@gmail.com',
             to: account.email,
-            subject: 'time to freewrite!',
-            text: 'become the artist you were born to be. freewrite today!'
+            subject: 'time to freewrite',
+            text: 'get inspired \n freewrite \n become the artist you were born to be \n http://artistjournal.herokuapp.com/'
           };
 
           email.sendMail(mailOptions, function (error, info) {
