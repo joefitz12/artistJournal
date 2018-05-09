@@ -38,19 +38,19 @@ const Preferences = (props) => (
                 name="phone"
               />
               <h2>notifications</h2>
-              <select value={props.textNotifications}
+              {/* <select value={props.textNotifications}
                 onChange={props.handleInputChange}
                 name="textNotifications">
                 <option value="true">I want to receive text message notifications.</option>
                 <option value="false">I would like to opt out of receiving text message notifications.</option>
-              </select>
+              </select> */}
               <select value={props.emailNotifications}
                 onChange={props.handleInputChange}
                 name="emailNotifications">
                 <option value="true">I want to receive email notifications.</option>
                 <option value="false">I would like to opt out of receiving email notifications.</option>
               </select>
-              <h2>theme</h2>
+              {/* <h2>theme</h2>
               <select
                 value={props.theme}
                 onChange={props.handleInputChange}
@@ -59,7 +59,7 @@ const Preferences = (props) => (
                 <option value="first theme">first theme</option>
                 <option value="theme2">theme again</option>
                 <option value="theme3">a theme x 3</option>
-              </select>
+              </select> */}
               <FormBtn
                 onClick={props.handlePrefSubmit}
               >
