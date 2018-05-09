@@ -7,16 +7,17 @@ import Note from "../../components/Note";
 import SidewaysTitle from "../../components/SidewaysTitle";
 import { List, ListItem } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
+import "./Journal.css";
 
 const Journal = (props) => (
   <Container fluid>
     <Row>
-      <Col size="md-1 sm-1 xs-1">
+      <Col id="journal-title-col" size="md-1 sm-1 xs-1">
         <SidewaysTitle divStyle1={{ background: "#FFA987", border: "0 1px solid #FCDEBE" }} titleStyle={{ left: "-12vw", top: "170px" }}>
           free thoughts
         </SidewaysTitle>
       </Col>
-      <Col size="md-10 sm-11 xs-11">
+      <Col id="main-container" size="md-10 sm-11 xs-11">
         <Row>
           <Col size="md-6 sm-12">
             <Row>

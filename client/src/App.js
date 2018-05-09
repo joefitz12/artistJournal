@@ -15,14 +15,10 @@ import Nav from "./components/Nav";
 class App extends Component {
 
   state = {
-    // isAuthorized: true,
-    // id: "5ac5001de3bcd21d53cdf105",
-    // isAuthorized: false,
     login: true,
-    // id: "",
     email: "",
     password: "",
-    phone: 0,
+    phone: "",
     firstName: "",
     emailNotifications: "",
     textNotifications: "",
@@ -232,7 +228,7 @@ class App extends Component {
     API.createArtist({
       email: this.state.email,
       password: this.state.password,
-      phone: this.state.phone,
+      phone: parseInt(this.state.phone, 10),
       firstName: this.state.firstName,
       emailNotifications: this.state.emailNotifications,
       textNotifications: this.state.textNotifications,

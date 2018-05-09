@@ -1,5 +1,7 @@
 #freewrite-title-col {
-    margin-right: 15px;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
 }
 
 #write-inspiration-input {
@@ -17,4 +19,11 @@
 #journal-link>a:hover {
     color: #73D1B8;
     text-decoration: none;
+}
+
+#inspiration-input-div,
+#thoughts-input-div,
+#word-count-submit-div {
+    margin-left: 15px;
+    margin-right: 15px;
 }

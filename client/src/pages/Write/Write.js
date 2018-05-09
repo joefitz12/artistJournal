@@ -1,7 +1,6 @@
 //jshint-ignore: start
 
 import React from "react";
-import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import Inspiration from "../../components/Inspiration";
 import { Input, TextArea, FormBtn } from "../../components/Form";
@@ -17,46 +16,49 @@ const Write = (props) => (
           freewrite
         </SidewaysTitle>
       </Col>
-      <Col size="md-10">
+      <Col id="main-container" size="md-11 sm-11 xs-11">
         <Row>
-
-          <Col size="md-10">
-
-            <Input
-              value={props.title}
-              onChange={props.handleInputChange}
-              id="write-inspiration-input"
-              name="title"
-              placeholder="inspiration"
-            />
-          </Col>
-          <Col size="md-2">
-            <Inspiration id="write-inspiration-btn" loadInspiration={props.loadInspiration} />
-          </Col>
-          <Col size="md-12">
-            <TextArea
-              value={props.body}
-              onChange={props.handleInputChange}
-              name="body"
-              placeholder="thoughts"
-            />
-          </Col>
-          <Col size="md-4">
-            <WordCounter wordCount={props.wordCount} />
-          </Col>
-          <Col size="md-8">
-            <FormBtn
-              disabled={!(props.title && props.body)}
-              onClick={props.handleNoteSubmit}
-            >
-              Submit Note
-              </FormBtn>
+          <div id="inspiration-input-div">
+            <Col size="md-11 sm-10 xs-10">
+              <Input
+                value={props.title}
+                onChange={props.handleInputChange}
+                id="write-inspiration-input"
+                name="title"
+                placeholder="inspiration"
+              />
+            </Col>
+            <Col size="md-1 sm-2 xs-2">
+              <Inspiration id="write-inspiration-btn" loadInspiration={props.loadInspiration} />
+            </Col>
+          </div>
+        </Row>
+        <Row>
+          <Col size="md-12 sm-12 xs-12">
+            <div id="thoughts-input-div">
+              <TextArea
+                value={props.body}
+                onChange={props.handleInputChange}
+                name="body"
+                placeholder="thoughts"
+              />
+            </div>
           </Col>
         </Row>
         <Row>
-          <Col id="journal-link" size="md-2">
-            <Link to="/">← to journal</Link>
-          </Col>
+          <div id="word-count-submit-div">
+            <Col size="md-4 sm-4 xs-4">
+              <WordCounter wordCount={props.wordCount} />
+            </Col>
+            <Col size="md-8 sm-8 xs-8">
+              <FormBtn
+                disabled={!(props.title && props.body)}
+                onClick={props.handleNoteSubmit}
+              >
+                Submit Note
+                </FormBtn>
+            </Col>
+          </div>
         </Row>
       </Col>
     </Row>
