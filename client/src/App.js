@@ -34,6 +34,12 @@ class App extends Component {
     search: ""
   };
 
+  componentDidMount = () => {
+    if(localStorage.getItem("id")){
+      this.setState({ id: localStorage.getItem("id"), isAuthorized: true },()=>this.successfulLogin());
+    }
+  }
+
   successfulLogin = () => {
     this.loadArtist(this.state.id);
     this.loadNotes(this.state.id);
@@ -189,12 +195,8 @@ class App extends Component {
       password: this.state.password
     })
       .then(data => {
-        // console.log("data: ", data);
-        // console.log("data.data._id: ", data.data._id);
-        // let id = data.data._id;
+        localStorage.setItem("id",data.data._id);
         this.setState({ id: data.data._id, isAuthorized: true, password: "" },()=>this.successfulLogin());
-        // If there's an error, log the error
-        // this.componentDidMount();
       })
       .catch(function (err) {
         console.log(err);
@@ -203,6 +205,7 @@ class App extends Component {
 
   handleLogout = event => {
     event.preventDefault();
+    localStorage.removeItem("id");
     this.setState({ 
       id: 0, 
       isAuthorized: false, 
