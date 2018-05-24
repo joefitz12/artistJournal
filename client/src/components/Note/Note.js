@@ -36,10 +36,10 @@ const Note = (props) => (
             </Col>
           </Row>
           <Row>
-            <Col size="md-4 sm-4 xs-4">
+            <Col size="md-6 sm-6 xs-6">
               <WordCounter wordCount={props.wordCount} />
             </Col>
-            <Col size="md-8 sm-8 xs-8">
+            <Col size="md-6 sm-6 xs-6">
               <FormBtn
                 disabled={!(props.title && props.body)}
                 onClick={props.handleNoteSubmit}
