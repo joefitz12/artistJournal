@@ -42,7 +42,7 @@ class App extends Component {
 
   successfulLogin = () => {
     this.loadArtist(this.state.id);
-    this.loadNotes(this.state.id);
+    this.loadNotes(this.state.id, this.updateProgress);
   }
 
   loadArtist = id => {
@@ -63,17 +63,17 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-  loadNotes = (id) => {
+  loadNotes = (id, cb) => {
     API.getAllNotes(id)
       .then(res => {
-        this.setState({ allNotes: res.data, notes: res.data, title: "", body: "" }, () => this.updateProgress())
+        this.setState({ allNotes: res.data, notes: res.data, title: "", body: "" }, cb)
       })
       .catch(err => console.log(err));
   };
 
   updateProgress = () => {
     let noteCount = this.state.allNotes.length;
-    let wordCount = this.state.allNotes.reduce((total, current) => current.body.trim().split(" ").filter(word => word !== "").length + total, 0);
+    let wordCount = this.state.allNotes.reduce((total, current) => current.body ? current.body.trim().split(" ").filter(word => word !== "").length : 0 + total, 0);
     // eslint-disable-next-line radix
     let lastEntryDate = this.state.allNotes.length > 0 ? parseInt(this.state.allNotes[0].date.substring(5, 7)) + "-" + parseInt(this.state.allNotes[0].date.substring(8, 10)) + "-" + parseInt(this.state.allNotes[0].date.substring(2, 4)) : 0;
 
@@ -156,7 +156,15 @@ class App extends Component {
   };
 
   newNote = () => {
-    this.setState({ selectedNote: {}, wordCount: 0, title: "", body: "", search: "", notes: this.state.allNotes })
+    API.saveNote({
+      userId: this.state.id,
+      title: "untitled " + moment().format("h:mma")
+    })
+      .then(res => {
+        this.loadNotes(this.state.id,() => this.selectNote(res.data._id))
+      })
+      .catch(err => console.log(err))
+    // this.setState({ selectedNote: {}, wordCount: 0, title: "", body: "", search: "", notes: this.state.allNotes })
   }
 
   loadInspiration = () => {
@@ -172,8 +180,13 @@ class App extends Component {
   };
 
   countWords = (note) => {
-    let wordCount = note.split(" ").length > 0 ? note.trim().split(" ").filter(word => word !== "").length : 0;
-    this.setState({ wordCount: wordCount });
+    if(note){
+      let wordCount = note.split(" ").length > 0 ? note.trim().split(" ").filter(word => word !== "").length : 0;
+      this.setState({ wordCount: wordCount });
+    }
+    else {
+      this.setState({ wordCount: 0});
+    }
   }
 
   switchNav = () => {

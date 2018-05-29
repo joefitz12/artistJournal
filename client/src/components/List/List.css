@@ -34,13 +34,8 @@
   border-bottom: none;
 }
 
-.delete-btn {
-  display: none;
-}
-
-.list-group-item:hover>.delete-btn {
+.list-group-item>#note-title-container:hover>.delete-btn {
   display: block;
-  line-height: 1.75;
 }
 
 #date-container {
