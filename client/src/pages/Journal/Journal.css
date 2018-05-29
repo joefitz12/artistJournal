@@ -3,3 +3,21 @@
     padding: 0;
     height: 100vh;
 }
+
+#journal-title {
+    left: -12vw; 
+    top: 170px;
+}
+
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+    #journal-title {
+        transform: rotate(-90deg);
+        white-space: nowrap;
+        position: absolute;
+        font-size: 8.33vw;
+        left: -16vw;
+    }
+}

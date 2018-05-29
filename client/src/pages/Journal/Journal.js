@@ -13,7 +13,7 @@ const Journal = (props) => (
   <Container fluid>
     <Row>
       <Col id="journal-title-col" size="md-1 sm-1 xs-1">
-        <SidewaysTitle divStyle1={{ background: "#FFA987", border: "0 1px solid #FCDEBE" }} titleStyle={{ left: "-12vw", top: "170px" }}>
+        <SidewaysTitle divStyle1={{ background: "#FFA987", border: "0 1px solid #FCDEBE" }} id="journal-title">
           free thoughts
         </SidewaysTitle>
       </Col>

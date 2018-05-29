@@ -12,7 +12,7 @@ const Write = (props) => (
   <Container fluid>
     <Row>
       <Col id="freewrite-title-col" size="md-1 sm-1 xs-1">
-        <SidewaysTitle divStyle1={{ background: "#4D6CA5", border: "0 1px #4862A0" }} titleStyle={{ left: "-7vw", top: "100px" }} id="write-title">
+        <SidewaysTitle divStyle1={{ background: "#4D6CA5", border: "0 1px #4862A0" }} id="write-title">
           freewrite
         </SidewaysTitle>
       </Col>
@@ -47,10 +47,10 @@ const Write = (props) => (
         </Row>
         <Row>
           <div id="word-count-submit-div">
-            <Col size="md-4 sm-4 xs-4">
+            <Col size="md-6 sm-6 xs-6">
               <WordCounter wordCount={props.wordCount} />
             </Col>
-            <Col size="md-8 sm-8 xs-8">
+            <Col size="md-6 sm-6 xs-6">
               <FormBtn
                 disabled={!(props.title && props.body)}
                 onClick={props.handleNoteSubmit}
