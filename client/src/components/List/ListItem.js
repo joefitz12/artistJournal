@@ -9,4 +9,5 @@ export const ListItem = props =>
     <div id="note-title-container">
      {props.children}
     </div>
+    
   </li>;
