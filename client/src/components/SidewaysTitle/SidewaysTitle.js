@@ -5,7 +5,7 @@ import "./SidewaysTitle.css";
 
 const SidewaysTitle = (props) =>
     <div style={props.divStyle1} className="sideways-div" id="sideways-div-1">
-        <h2 style={props.titleStyle}>{props.children}</h2>
+        <h2 id={props.id} style={props.titleStyle}>{props.children}</h2>
     </div>;
 
 

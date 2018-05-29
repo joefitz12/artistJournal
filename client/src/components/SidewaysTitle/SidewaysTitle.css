@@ -20,6 +20,6 @@
         white-space: nowrap;
         position: absolute;
         font-size: 8.33vw;
-        left: -16vw !important;
+        left: -16vw;
     }
 }
