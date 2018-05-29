@@ -35,5 +35,19 @@ select {
 }
 
 #pref-title {
-    left: -14vw;
+    left: -9vw;
+    top: 130px;
+}
+
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+    #pref-title {
+        transform: rotate(-90deg);
+        white-space: nowrap;
+        position: absolute;
+        font-size: 8.33vw;
+        left: -14vw;
+    }
 }

@@ -10,7 +10,7 @@ const Preferences = (props) => (
   <Container fluid>
     <Row>
       <Col id="preferences-title-col" size="md-1 sm-1 xs-1">
-        <SidewaysTitle divStyle1={{ background: "#FFD97D", border: "0 1px solid #FFCA3A" }} titleStyle={{ left: "-9vw", top: "130px" }} id="pref-title">
+        <SidewaysTitle divStyle1={{ background: "#FFD97D", border: "0 1px solid #FFCA3A" }} id="pref-title">
           preferences
         </SidewaysTitle>
       </Col>

@@ -29,5 +29,19 @@
 }
 
 #write-title {
-    left: -13vw;
+    left: -7vw; 
+    top: 100px;
+}
+
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+    #write-title {
+        transform: rotate(-90deg);
+        white-space: nowrap;
+        position: absolute;
+        font-size: 8.33vw;
+        left: -13vw;
+    }
 }
