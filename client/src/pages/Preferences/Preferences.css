@@ -33,3 +33,7 @@ select {
 select {
     line-height: 5;
 }
+
+#pref-title {
+    left: -14vw;
+}
