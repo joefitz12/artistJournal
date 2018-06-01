@@ -11,20 +11,20 @@ With that in mind, artistJournal was created to help artists in their creation p
 
 ### Main Journal Page
 
-![journal main page](README-photos/main-journal)
+![journal main page](README-photos/main-journal.png)
 
 #### Inspiration
-![journal without inspiration needed](README-photos/journal-pad)
+![journal without inspiration needed](README-photos/journal-pad.png)
 
-![journal with inspiration](README-photos/journal-pad-inspired)
+![journal with inspiration](README-photos/journal-pad-inspired.png)
 
 ### Expanded Journal Pad
 
-![expanded freewriting journal pad](README-photos/freewrite-pad)
+![expanded freewriting journal pad](README-photos/freewrite-pad.png)
 
 ### Artist Preferences
 
-![artist preferences](README-photos/prefs)
+![artist preferences](README-photos/prefs.png)
 
 ## Deployment
 
