@@ -46,3 +46,7 @@ This project is deployed to Heroku [here](http://artistjournal.herokuapp.com/).
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Thanks to Bob Ross and [Bob Ross Lorem Ipsum](http://www.bobrosslipsum.com/) for providing fun text to use for my screenshots!
