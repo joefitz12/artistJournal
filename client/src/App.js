@@ -74,6 +74,7 @@ class App extends Component {
   updateProgress = () => {
     let noteCount = this.state.allNotes.length;
     let wordCount = this.state.allNotes.reduce((total, current) => current.body ? current.body.trim().split(" ").filter(word => word !== "").length : 0 + total, 0);
+    
     // eslint-disable-next-line radix
     let lastEntryDate = this.state.allNotes.length > 0 ? parseInt(this.state.allNotes[0].date.substring(5, 7)) + "-" + parseInt(this.state.allNotes[0].date.substring(8, 10)) + "-" + parseInt(this.state.allNotes[0].date.substring(2, 4)) : 0;
 
