@@ -73,8 +73,8 @@ class App extends Component {
 
   updateProgress = () => {
     let noteCount = this.state.allNotes.length;
-    let wordCount = this.state.allNotes.reduce((total, current) => current.body ? current.body.trim().split(" ").filter(word => word !== "").length : 0 + total, 0);
-    
+    let wordCount = this.state.allNotes.filter(note => note.body).reduce((total, current) => current.body.trim().split(" ").filter(word => word !== "").length + total, 0);
+
     // eslint-disable-next-line radix
     let lastEntryDate = this.state.allNotes.length > 0 ? parseInt(this.state.allNotes[0].date.substring(5, 7)) + "-" + parseInt(this.state.allNotes[0].date.substring(8, 10)) + "-" + parseInt(this.state.allNotes[0].date.substring(2, 4)) : 0;
 
@@ -132,8 +132,13 @@ class App extends Component {
   }
 
   searchNotes = () => {
-    let filteredNotes = this.state.allNotes.filter(note => (note.title.toLowerCase().includes(this.state.search.toLowerCase()) || note.body.toLowerCase().includes(this.state.search.toLowerCase())));
-    !this.state.search ? this.setState({ notes: this.state.allNotes }) : this.setState({ notes: filteredNotes });
+    if(this.state.search){
+      let filteredNotes = this.state.allNotes.filter(note => (note.title.toLowerCase().includes(this.state.search.toLowerCase()) || note.body ? note.body.toLowerCase().includes(this.state.search.toLowerCase()) : 0));
+      this.setState({ notes: filteredNotes });
+    }
+    else {
+      this.setState({ notes: this.state.allNotes });
+    }
   };
 
   updateSearch = (event) => {
@@ -149,7 +154,7 @@ class App extends Component {
         this.setState({ selectedNote: this.state.notes[key] },
           () => this.setState({
             title: this.state.selectedNote.title,
-            body: this.state.selectedNote.body
+            body: this.state.selectedNote.body ? this.state.selectedNote.body : ""
           }, () => this.countWords(this.state.selectedNote.body))
         )
       }
@@ -162,7 +167,10 @@ class App extends Component {
       title: "untitled " + moment().format("h:mma")
     })
       .then(res => {
-        this.loadNotes(this.state.id,() => this.selectNote(res.data._id))
+        this.loadNotes(this.state.id,() => {
+          this.selectNote(res.data._id);
+          this.updateProgress();
+        })
       })
       .catch(err => console.log(err))
     // this.setState({ selectedNote: {}, wordCount: 0, title: "", body: "", search: "", notes: this.state.allNotes })
@@ -176,7 +184,7 @@ class App extends Component {
 
   deleteNote = id => {
     API.deleteNote(id)
-      .then(res => this.loadNotes(this.state.id))
+      .then(res => this.loadNotes(this.state.id,() => this.updateProgress()))
       .catch(err => console.log(err));
   };
 
@@ -223,7 +231,7 @@ class App extends Component {
     this.setState({ 
       id: 0, 
       isAuthorized: false, 
-      phone: 0,
+      phone: "",
       firstName: "",
       emailNotifications: "",
       textNotifications: "",
@@ -293,7 +301,7 @@ class App extends Component {
           title: this.state.title,
           body: this.state.body
         })
-          .then(res => this.loadNotes(this.state.id))
+          .then(res => this.loadNotes(this.state.id,()=>this.updateProgress()))
           .catch(err => console.log(err));
       }
       else {
@@ -302,8 +310,7 @@ class App extends Component {
           title: this.state.title,
           body: this.state.body
         })
-          .then(res => this.loadNotes(this.state.id))
-          .then(() => this.updateProgress())
+          .then(res => this.loadNotes(this.state.id,()=>this.updateProgress()))
           .catch(err => console.log(err));
       }
     }
