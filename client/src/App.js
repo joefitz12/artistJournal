@@ -305,6 +305,7 @@ class App extends Component {
           .catch(err => console.log(err));
       }
       else {
+        this.setState({wordCount: 0})
         API.saveNote({
           userId: this.state.id,
           title: this.state.title,
