@@ -44,7 +44,8 @@ let emailNotifications = cron.schedule('2 14 * * *', function(){
   artistsController.getAllEmail();
 });
 
-emailNotifications.start();
+Pausing email notifications for time being
+// emailNotifications.start();
 
 // Start the API server
 app.listen(PORT, function () {
