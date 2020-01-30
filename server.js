@@ -33,10 +33,10 @@ app.use(routes);
 mongoose.Promise = global.Promise;
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://joefitz12:mYzguP4TvxmKNoypzreLjWyM@ds139869.mlab.com:39869/heroku_b96dmrv0",
-  {
-    useMongoClient: true
-  }
+  process.env.MONGODB_URI || "mongodb://joefitz12:mYzguP4TvxmKNoypzreLjWyM@ds139869.mlab.com:39869/heroku_b96dmrv0"
+  // {
+  //   useMongoClient: true
+  // }
 );
 
 let emailNotifications = cron.schedule('2 14 * * *', function(){
@@ -44,7 +44,7 @@ let emailNotifications = cron.schedule('2 14 * * *', function(){
   artistsController.getAllEmail();
 });
 
-Pausing email notifications for time being
+// Pausing email notifications for time being
 // emailNotifications.start();
 
 // Start the API server
