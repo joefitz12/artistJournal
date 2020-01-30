@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+mongoose.set('useCreateIndex', true);
 var Promise = require("bluebird");
 Promise.promisifyAll(mongoose);
 const bcrypt = require("bcrypt-nodejs");
